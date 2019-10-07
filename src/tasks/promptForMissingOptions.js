@@ -17,9 +17,9 @@ async function promptForMissingOptions() {
     })
   }
 
-  const answers = await inquirer.prompt(questions)
+  // const answers = await inquirer.prompt(questions)
 
-  ShellArgumentsStore.setCommitMessage(commitMsg || answers.commitMsg)
+  ShellArgumentsStore.setCommitMessage('test')
 
   return true
 }

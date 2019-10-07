@@ -1,15 +1,3 @@
-# DAVAI-COMMIT
-
-## Usage
-```shell
-  davai-commit
-```
-## Description
-- `davai-commit`
-  > Creates a commit
-
-## Example DAVAI-CONFIG.json
-```json
 {
   "DEV_TOOLS_PATH": "/Applications/wechatwebdevtools.app/Contents/MacOS/cli",
   "DEFAULT_PAGE_PATH": ["pages/index/index"],
@@ -56,4 +44,3 @@
     }
   ]
 }
-```

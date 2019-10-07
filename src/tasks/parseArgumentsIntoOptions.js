@@ -16,7 +16,9 @@ import { ShellArgumentsStore } from '../modules/index'
  * @return {Boolean}
  */
 function parseArgumentsIntoOptions(rawArgs) {
-  // TODO: check for fix and feature spelled correctly
+  // TODO: set the option to:
+  //  - version
+  //  - mode [?]
   /**
    * Raw arguments:
    * 1st: the nodeJS bin folder

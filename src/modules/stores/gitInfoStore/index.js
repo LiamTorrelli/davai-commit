@@ -1,12 +1,12 @@
-import { SETTING } from './setting'
-import { COMMITTING } from './committing'
-import { BRANCHING } from './branching'
-import { PUSHING } from './pushing'
-import { TAGGING } from './tagging'
-import { MERGING } from './merging'
-import { OTHER } from './other'
-import { STAGING } from './staging'
-import { PULLING } from './pulling'
+import { SETTING } from './settingModules'
+import { COMMITTING } from './committingModules'
+import { BRANCHING } from './branchingModules'
+import { PUSHING } from './pushingModules'
+import { TAGGING } from './taggingModules'
+import { MERGING } from './mergingModules'
+import { OTHER } from './otherModules'
+import { STAGING } from './stagingModules'
+import { PULLING } from './pullingModules'
 
 export {
   SETTING,

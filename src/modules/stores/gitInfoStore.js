@@ -20,7 +20,6 @@ import { logAutorun } from '../../handlers/outputHandler'
 export const GitInfoStore = observable({
   developer: null,
   currentBranch: null, // setCurrentBranch
-  allOpenPrs: null, // checkOpenReleases
   commitType: '',
   releaseType: '',
   statusedFiles: [],
@@ -46,13 +45,10 @@ export const GitInfoStore = observable({
   setDeveloper: action,
   setCurrentBranch: action,
   setStatusedFiles: action,
-  switchToAReleaseBranch: action,
-  switchToNewReleaseBranch: action,
   createReleaseMsg: action,
   createCommitMsg: action,
   pushCommit: action,
   createTag: action,
-  checkOpenReleases: action,
   mergeBranch: action,
   stageFiles: action,
   pullBranch: action

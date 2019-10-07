@@ -17,6 +17,7 @@ export const PUSHING = {
         ErrorMessage
       } = await new GitService()
         .pushCommit({ branchName: cleanUpFromN(branchName) })
+        // this.pushed = code === 0 && !result.includes('Everything up-to-date')
 
       if (code !== 0) throw new Error(ErrorMessage)
 

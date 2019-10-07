@@ -29,6 +29,7 @@ export const COMMITTING = {
         && !result.includes('nothing to commit, working tree clean')
       ) throw new Error(ErrorMessage)
 
+      this.goingToPush = !result.includes('nothing to commit, working tree clean')
       this.commitStatus = result
       return this
     } catch (err) { return logError('Committing changes failed:', err) }
@@ -81,16 +82,18 @@ export const COMMITTING = {
     divider += '☐'
 
     message += `❍ Automatic commit by: ${cleanUpFromN(developer)}\n`
-    message += `${divider}\n`
 
     if (filesWithStatus.length) {
+      message += `${divider}\n`
+
       for (let i = 0; i < filesWithStatus.length; i += 1) {
         message += `${filesWithStatus[i].status}`.padStart(maxLengthStatus + 2)
         message += `:  ${filesWithStatus[i].fileName}\n`
       }
-    } else message += 'Empty commit message. Probably merging smth.'
 
-    message += `${divider}\n`
+      message += `${divider}\n`
+    } else message += 'Empty commit message. Probably merging smth.\n'
+
     message += `Generated: ${dateString}`
 
     this.commitMessage = message

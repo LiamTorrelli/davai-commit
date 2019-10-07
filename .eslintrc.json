@@ -88,7 +88,7 @@
     ],
     "max-depth": [
       "error",
-      2
+      3
     ],
     "no-console": "off",
     "max-len": ["error", {

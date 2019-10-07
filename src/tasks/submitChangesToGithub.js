@@ -32,10 +32,14 @@ async function submitAllToGithub() {
   if (commitMsg && currentBranch) {
     try {
       await GitInfoStore.stageFiles()
-      await GitInfoStore.commitChanges(commitMsg)
-      await GitInfoStore.pushCommit({ branchName: currentBranch })
+      const { goingToPush } = await GitInfoStore.commitChanges(commitMsg)
 
-      return true
+      await GitInfoStore
+        .pushCommit({ branchName: currentBranch })
+
+      if (!goingToPush) return logError('Not going to push', 'Nothing to commit')
+
+      return goingToPush
     } catch (err) { console.warn('failed:', err); return false }
   }
   return false

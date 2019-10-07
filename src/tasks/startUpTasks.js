@@ -15,8 +15,7 @@ import { __isEmpty } from '../helpers/help'
 import {
   ProjectInfoStore,
   GitInfoStore,
-  FilesInfoStore,
-  ShellArgumentsStore
+  FilesInfoStore
 } from '../modules/index'
 
 // Functions

@@ -83,10 +83,12 @@ export const COMMITTING = {
     message += `❍ Automatic commit by: ${cleanUpFromN(developer)}\n`
     message += `${divider}\n`
 
-    for (let i = 0; i < filesWithStatus.length; i += 1) {
-      message += `${filesWithStatus[i].status}`.padStart(maxLengthStatus + 2)
-      message += `:  ${filesWithStatus[i].fileName}\n`
-    }
+    if (filesWithStatus.length) {
+      for (let i = 0; i < filesWithStatus.length; i += 1) {
+        message += `${filesWithStatus[i].status}`.padStart(maxLengthStatus + 2)
+        message += `:  ${filesWithStatus[i].fileName}\n`
+      }
+    } else message += 'Empty commit message. Probably merging smth.'
 
     message += `${divider}\n`
     message += `Generated: ${dateString}`

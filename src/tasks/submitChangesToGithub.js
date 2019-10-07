@@ -28,10 +28,11 @@ async function submitAllToGithub() {
       commitMsg: enteredMsg,
       actionTime
     })
+
   if (commitMsg && currentBranch) {
     try {
       await GitInfoStore.stageFiles()
-      const { goingToPush } = await GitInfoStore.commitChanges("Первая строка\nВторая строка")
+      const { goingToPush } = await GitInfoStore.commitChanges(commitMsg)
 
       await GitInfoStore
         .pushCommit({ branchName: currentBranch })

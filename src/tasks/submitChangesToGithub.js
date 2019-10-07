@@ -28,7 +28,6 @@ async function submitAllToGithub() {
       commitMsg: enteredMsg,
       actionTime
     })
-  const test = '';
   if (commitMsg && currentBranch) {
     try {
       await GitInfoStore.stageFiles()

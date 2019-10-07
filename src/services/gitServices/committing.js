@@ -3,7 +3,7 @@ import shell from 'shelljs'
 
 export const COMMITTING = {
   async commitChanges({ msg }) {
-    const output = shell.exec(`git commit -m "${msg}"`)
+    const output = shell.exec(`git commit -m "Head" -m "${msg}"`)
     const { stdout, stderr, code } = output
 
     return {

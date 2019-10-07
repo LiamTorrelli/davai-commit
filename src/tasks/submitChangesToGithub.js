@@ -32,7 +32,7 @@ async function submitAllToGithub() {
   if (commitMsg && currentBranch) {
     try {
       await GitInfoStore.stageFiles()
-      const { goingToPush } = await GitInfoStore.commitChanges("Первая строка/nВторая строка")
+      const { goingToPush } = await GitInfoStore.commitChanges("Первая строка\nВторая строка")
 
       await GitInfoStore
         .pushCommit({ branchName: currentBranch })

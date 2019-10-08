@@ -12,7 +12,6 @@ import { FilesService } from '../../services/filesService'
 import { logError, logAutorun, logStoreValues } from '../../handlers/outputHandler'
 
 export const ProjectInfoStore = observable({
-  releaseType: null,
   actionTime: null,
   releaseDescription: null,
   oldVersion: null,
@@ -22,10 +21,6 @@ export const ProjectInfoStore = observable({
     mapObjIndexed((value, key) => {
       this[key] = value
     }, obj)
-    return this
-  },
-  setReleaseType(type) {
-    this.releaseType = type
     return this
   },
   setActionDate() {
@@ -66,7 +61,6 @@ export const ProjectInfoStore = observable({
 
 }, {
   setProjectInfo: action,
-  setReleaseType: action,
   setActionDate: action,
   setReleaseDescription: action,
   setOldVersion: action,

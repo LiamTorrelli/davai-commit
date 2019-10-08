@@ -1,12 +1,12 @@
-import { BRANCHING } from './branching'
-import { COMMITTING } from './committing'
-import { OTHER } from './other'
-import { PUSHING } from './pushing'
-import { SETTING } from './setting'
-import { STAGING } from './staging'
-import { MERGING } from './merging'
-import { TAGGING } from './tagging'
-import { PULLING } from './pulling'
+import { BRANCHING } from './branchingServices'
+import { COMMITTING } from './committingServices'
+import { OTHER } from './otherServices'
+import { PUSHING } from './pushingServices'
+import { SETTING } from './settingServices'
+import { STAGING } from './stagingServices'
+import { MERGING } from './mergingServices'
+import { TAGGING } from './taggingServices'
+import { PULLING } from './pullingServices'
 
 export {
   BRANCHING,

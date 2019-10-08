@@ -2,9 +2,7 @@
 import shell from 'shelljs'
 
 export const OTHER = {
-  /**
-  * Getting git status @return {String || false}
-  */
+
   getGitStatus() {
     const output = shell.exec('git status -s -u')
     const { stdout, stderr, code } = output
@@ -16,9 +14,6 @@ export const OTHER = {
     }
   },
 
-  /**
-  * Getting git user name @return {String || false}
-  */
   getGitUserName() {
     const output = shell.exec('git config user.name')
     const { stdout, stderr, code } = output
@@ -30,9 +25,6 @@ export const OTHER = {
     }
   },
 
-  /**
-   * Fetch repo history @return {String || false}
-   */
   fetchHistory() {
     const output = shell.exec('git fetch --all')
     const { stdout, stderr, code } = output

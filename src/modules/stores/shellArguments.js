@@ -44,11 +44,6 @@ export const ShellArgumentsStore = observable({
 
     return this
   },
-  setReleaseType(releaseType) {
-    this.releaseType = releaseType
-
-    return this
-  },
   setDescription(description) {
     this.description = description
 
@@ -63,7 +58,6 @@ export const ShellArgumentsStore = observable({
 }, {
   setDirectory: action,
   setCommitMessage: action,
-  setReleaseType: action,
   setDescription: action,
   setActionType: action,
   setTaskName: action,

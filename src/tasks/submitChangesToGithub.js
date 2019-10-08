@@ -11,49 +11,62 @@ import { taskHandler } from '../handlers/taskHandler'
 // Stores
 import {
   GitInfoStore,
-  FilesInfoStore,
   ProjectInfoStore,
   ShellArgumentsStore
 } from '../modules/index'
 
-async function submitAllToGithub() {
-  // TODO: Separate the logic into 3 tasks
+async function stageFiles() {
+  const { filesAreStaged } = await GitInfoStore.stageFiles()
+  return filesAreStaged
+}
 
-  const { commitMsg: enteredMsg } = ShellArgumentsStore
+async function createCommitMsg() {
+  const { commitMsg } = ShellArgumentsStore
   const { currentBranch } = await GitInfoStore.setCurrentBranch()
   await GitInfoStore.setStatusedFiles()
   const { actionTime } = ProjectInfoStore
 
-  const commitMsg = await GitInfoStore
+  const { commitMessage } = await GitInfoStore
     .createCommitMsg({
       branchName: currentBranch,
-      commitMsg: enteredMsg,
+      commitMsg,
       actionTime
     })
 
-  if (commitMsg && currentBranch) {
-    try {
-      await GitInfoStore.stageFiles()
-      const { goingToPush } = await GitInfoStore.commitChanges(commitMsg)
-
-      await GitInfoStore
-        .pushCommit({ branchName: currentBranch })
-
-      if (!goingToPush) return logError('Not going to push', 'Nothing to commit')
-
-      return goingToPush
-    } catch (err) { console.warn('failed:', err); return false }
+  if (commitMessage) {
+    const { goingToPush } = await GitInfoStore.commitChanges({ commitMessage })
+    return goingToPush
   }
+
   return false
+}
+
+async function pushCommit() {
+  const { currentBranch } = await GitInfoStore.setCurrentBranch()
+
+  try {
+    await GitInfoStore
+      .pushCommit({ branchName: currentBranch })
+
+    return true
+  } catch (err) { console.warn('failed:', err); return false }
 }
 
 export async function submitChangesToGithub() {
   logInfo('Submit changes to github')
 
   const tasksToRun = new Listr([
-    { /*  ** submitAllToGithub **  */
-      task: () => taskHandler('submitAllToGithub', submitAllToGithub),
-      title: tasks['submitAllToGithub'].title
+    { /*  ** stageFiles **  */
+      task: () => taskHandler('stageFiles', stageFiles),
+      title: tasks['stageFiles'].title
+    },
+    { /*  ** createCommitMsg **  */
+      task: () => taskHandler('createCommitMsg', createCommitMsg),
+      title: tasks['createCommitMsg'].title
+    },
+    { /*  ** pushCommit **  */
+      task: () => taskHandler('pushCommit', pushCommit),
+      title: tasks['pushCommit'].title
     }
   ])
 

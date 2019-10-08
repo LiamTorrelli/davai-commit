@@ -15,6 +15,7 @@ export const GIT_M_STAGING = {
 
       if (code !== 0) throw new Error(ErrorMessage)
 
+      this.filesAreStaged = code === 0
       return this
     } catch (err) { return logError('Staging files failed:', err) }
   }

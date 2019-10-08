@@ -26,6 +26,7 @@ async function checkIfFilesExist() {
 
 async function setStatusedFiles() {
   await GitInfoStore.setStatusedFiles()
+  // TODO: if no status files => exit with error
 
   return true
 }

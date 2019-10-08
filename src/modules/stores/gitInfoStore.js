@@ -30,6 +30,7 @@ export const GitInfoStore = observable({
   creatingTagOutputMsg: '',
   tagName: '',
   tagPushStatus: '',
+  filesAreStaged: false,
 
   ...GIT_M_SETTING,
   ...GIT_M_COMMITTING,

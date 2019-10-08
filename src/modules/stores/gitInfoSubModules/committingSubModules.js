@@ -15,15 +15,16 @@ import {
 import { statusLetters } from '../../../config/otherWords/gitStatusNames'
 
 export const GIT_M_COMMITTING = {
-  async commitChanges(msg) {
-    logThis(msg, 'COMMITING')
+
+  async commitChanges({ commitMessage }) {
+    logThis(commitMessage, 'COMMITING')
 
     try {
       const {
         result,
         code,
         ErrorMessage
-      } = await new GitService().commitChanges({ msg })
+      } = await new GitService().commitChanges({ commitMessage })
 
       if (code !== 0
         && !result.includes('nothing to commit, working tree clean')
@@ -98,7 +99,7 @@ export const GIT_M_COMMITTING = {
 
     this.commitMessage = message
 
-    return message
+    return this
   },
 
   async createReleaseMsg({
@@ -140,7 +141,9 @@ export const GIT_M_COMMITTING = {
     message += `${dateLine}\n`
     message += `${divider}`
 
-    return message
+    this.commitMessage = message
+
+    return this
   },
 
   async createCommitMsg({
@@ -177,6 +180,8 @@ export const GIT_M_COMMITTING = {
     message += `${dateLine}\n`
     message += `${divider}`
 
-    return message
+    this.commitMessage = message
+
+    return this
   }
 }

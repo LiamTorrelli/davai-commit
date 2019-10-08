@@ -15,9 +15,17 @@ const tasks = {
     title: '# Setting the project info',
     error: '# There was an error while getting project info'
   },
-  submitAllToGithub: {
-    title: '# Committing',
-    error: '# There was an error while Committing'
+  createCommitMsg: {
+    title: '# Creating a commit message',
+    error: '# There was an error while creating a commit message'
+  },
+  stageFiles: {
+    title: '# Staging files',
+    error: '# There was an error while Staging files'
+  },
+  pushCommit: {
+    title: '# Pushing commit',
+    error: '# There was an error while Pushing commit'
   }
 }
 

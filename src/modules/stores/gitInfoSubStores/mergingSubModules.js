@@ -7,7 +7,7 @@ import { logError } from '../../../handlers/outputHandler'
 // Helpers
 import { cleanUpFromN } from '../../../helpers/help'
 
-export const MERGING = {
+export const GIT_S_MERGING = {
 
   async mergeBranch(branchName) {
     try {

@@ -7,7 +7,7 @@ import { logError, logThis } from '../../../handlers/outputHandler'
 // Helpers
 import { cleanUpFromN } from '../../../helpers/help'
 
-export const PUSHING = {
+export const GIT_S_PUSHING = {
   async pushCommit({ branchName }) {
     logThis('Wait...', `PUSHING COMMIT ON BRANCH [ ${branchName} ]`)
 

@@ -1,17 +1,17 @@
 // Libs
 import { observable, action, autorun } from 'mobx'
 
-// Functions
+// Sub services
 import {
-  SETTING,
-  COMMITTING,
-  BRANCHING,
-  PUSHING,
-  TAGGING,
-  MERGING,
-  OTHER,
-  STAGING,
-  PULLING
+  GIT_S_SETTING,
+  GIT_S_COMMITTING,
+  GIT_S_BRANCHING,
+  GIT_S_STAGING,
+  GIT_S_PUSHING,
+  GIT_S_TAGGING,
+  GIT_S_MERGING,
+  GIT_S_PULLING,
+  GIT_S_OTHER
 } from './gitInfoSubStores/index'
 
 // Handlers
@@ -31,15 +31,15 @@ export const GitInfoStore = observable({
   tagName: '',
   tagPushStatus: '',
 
-  ...SETTING,
-  ...COMMITTING,
-  ...STAGING,
-  ...BRANCHING,
-  ...PUSHING,
-  ...TAGGING,
-  ...MERGING,
-  ...OTHER,
-  ...PULLING
+  ...GIT_S_SETTING,
+  ...GIT_S_COMMITTING,
+  ...GIT_S_BRANCHING,
+  ...GIT_S_STAGING,
+  ...GIT_S_PUSHING,
+  ...GIT_S_TAGGING,
+  ...GIT_S_MERGING,
+  ...GIT_S_PULLING,
+  ...GIT_S_OTHER
 
 }, {
   setDeveloper: action,

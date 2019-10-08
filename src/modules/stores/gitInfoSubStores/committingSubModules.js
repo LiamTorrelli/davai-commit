@@ -14,7 +14,7 @@ import {
 // Words
 import { statusLetters } from '../../../config/otherWords/gitStatusNames'
 
-export const COMMITTING = {
+export const GIT_S_COMMITTING = {
   async commitChanges(msg) {
     logThis(msg, 'COMMITING')
 

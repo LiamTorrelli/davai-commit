@@ -7,7 +7,7 @@ import { logError } from '../../../handlers/outputHandler'
 // Helpers
 import { cleanUpFromN } from '../../../helpers/help'
 
-export const GIT_S_BRANCHING = {
+export const GIT_M_BRANCHING = {
 
   async setCurrentBranch() {
     try {

@@ -4,7 +4,7 @@ import { GitService } from '../../../services/gitService'
 // Handlers
 import { logError } from '../../../handlers/outputHandler'
 
-export const GIT_S_SETTING = {
+export const GIT_M_SETTING = {
 
   async setStatusedFiles() {
     try {

@@ -7,7 +7,7 @@ import { logError } from '../../../handlers/outputHandler'
 // Helpers
 import { cleanUpFromN } from '../../../helpers/help'
 
-export const GIT_S_TAGGING = {
+export const GIT_M_TAGGING = {
 
   async createTag({
     tagNameBase,

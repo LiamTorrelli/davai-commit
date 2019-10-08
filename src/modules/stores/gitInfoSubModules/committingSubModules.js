@@ -75,73 +75,31 @@ export const GIT_M_COMMITTING = {
 
     const dateString = `${month} ${day} [ ${time} ]`
 
-    let message = ''
+    let head = ''
+    let body = ''
+
     let divider = '☐'
 
     for (let i = 0; i < maxLengthFullLine + 1; i += 1) divider += '-'
 
     divider += '☐'
 
-    message += `❍ Automatic commit by: ${cleanUpFromN(developer)}\n`
+    head += `❍ Automatic commit by: ${cleanUpFromN(developer)}`
 
     if (filesWithStatus.length) {
-      message += `${divider}\n`
+      body += `${divider}\n`
 
       for (let i = 0; i < filesWithStatus.length; i += 1) {
-        message += `${filesWithStatus[i].status}`.padStart(maxLengthStatus + 2)
-        message += `:  ${filesWithStatus[i].fileName}\n`
+        body += `${filesWithStatus[i].status}`.padStart(maxLengthStatus + 2)
+        body += `:  ${filesWithStatus[i].fileName}\n`
       }
 
-      message += `${divider}\n`
-    } else message += 'Empty commit message. Probably merging smth.\n'
+      body += `${divider}\n`
+    } else body += 'Empty commit body. Probably merging smth.\n'
 
-    message += `Generated: ${dateString}`
+    body += `Generated: ${dateString}`
 
-    this.commitMessage = message
-
-    return this
-  },
-
-  async createReleaseMsg({
-    actionTime = null,
-    releaseType = null,
-    newVersion = null,
-    description = null
-  }) {
-    if (!actionTime || !releaseType || !newVersion || !description) return logError(
-      'Creating release message failed:',
-      'No date or release type or new version or description'
-    )
-
-    const {
-      day,
-      month,
-      weekDay,
-      year
-    } = actionTime
-
-    const { developer } = this
-
-    const dateString = `${month} ${day} ${year} (${weekDay})`
-    let message = ''
-    const developerLine = `  ✸ Developer: ${cleanUpFromN(developer)}`
-    const dateLine = `  ✸ Date: ${cleanUpFromN(dateString)}`
-
-    const dividerLength = getMaxLength(developerLine.length, dateLine.length)
-
-    let divider = '☐'
-
-    for (let i = 0; i < dividerLength; i += 1) divider += '-'
-    divider += '☐'
-
-    message += `❍ RELEASE-${cleanUpFromN(newVersion)} ❍ [ ${releaseType} ]\n\n`
-    message += `  Description: ${cleanUpFromN(description)}\n\n`
-    message += `${divider}\n`
-    message += `${developerLine}\n`
-    message += `${dateLine}\n`
-    message += `${divider}`
-
-    this.commitMessage = message
+    this.commitMessage = { head, body }
 
     return this
   },
@@ -163,7 +121,9 @@ export const GIT_M_COMMITTING = {
 
     const dateString = `${month} ${day} [ ${time} ]`
 
-    let message = ''
+    let head = ''
+    let body = ''
+
     const developerLine = `  ✸ Developer: ${cleanUpFromN(developer)}`
     const dateLine = `  ✸ Date: ${cleanUpFromN(dateString)}`
 
@@ -174,13 +134,14 @@ export const GIT_M_COMMITTING = {
     for (let i = 0; i < dividerLength; i += 1) divider += '-'
     divider += '☐'
 
-    message += `❍ ${cleanUpFromN(commitMsg)} ❍\n\n`
-    message += `${divider}\n`
-    message += `${developerLine}\n`
-    message += `${dateLine}\n`
-    message += `${divider}`
+    head += `❍ ${cleanUpFromN(commitMsg)} ❍`
 
-    this.commitMessage = message
+    body += `${divider}\n`
+    body += `${developerLine}\n`
+    body += `${dateLine}\n`
+    body += `${divider}`
+
+    this.commitMessage = { head, body }
 
     return this
   }

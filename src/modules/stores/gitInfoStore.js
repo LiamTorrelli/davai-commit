@@ -46,7 +46,6 @@ export const GitInfoStore = observable({
   setDeveloper: action,
   setCurrentBranch: action,
   setStatusedFiles: action,
-  createReleaseMsg: action,
   createCommitMsg: action,
   pushCommit: action,
   createTag: action,

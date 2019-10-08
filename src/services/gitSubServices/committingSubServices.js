@@ -4,9 +4,9 @@ import shell from 'shelljs'
 export const GIT_S_COMMITTING = {
 
   async commitChanges({ commitMessage }) {
-    // TODO: Separate the head from the body of the message
+    const { head, body } = commitMessage
 
-    const output = shell.exec(`git commit -m "${commitMessage}"`)
+    const output = shell.exec(`git commit -m "${head}" -m "${body}"`)
     const { stdout, stderr, code } = output
 
     return {

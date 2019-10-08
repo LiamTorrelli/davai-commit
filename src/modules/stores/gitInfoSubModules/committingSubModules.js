@@ -17,7 +17,7 @@ import { statusLetters } from '../../../config/otherWords/gitStatusNames'
 export const GIT_M_COMMITTING = {
 
   async commitChanges({ commitMessage }) {
-    logThis(commitMessage, 'COMMITING')
+    logThis(commitMessage.toString(), 'COMMITING')
 
     try {
       const {

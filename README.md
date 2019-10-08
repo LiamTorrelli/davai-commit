@@ -1,5 +1,9 @@
 # DAVAI-COMMIT
 
+## VERSIONS
+ - DEVELOPMENT RELEASE 0.0.1
+ - PRODUCTION RELEASE 0.0.1
+
 ## First installation
 
 ### Set up git project

@@ -1,7 +1,7 @@
 // Libs
 import shell from 'shelljs'
 
-export const BRANCHING = {
+export const GIT_S_BRANCHING = {
 
   async getCurrentBranch() {
     const output = shell.exec('git symbolic-ref --short HEAD')

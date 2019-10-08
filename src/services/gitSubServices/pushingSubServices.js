@@ -1,7 +1,7 @@
 // Libs
 import shell from 'shelljs'
 
-export const PUSHING = {
+export const GIT_S_PUSHING = {
 
   async pushCommit({ branchName }) {
     if (!branchName) throw new Error('Handling Pushing Commit failed, no branch name found')

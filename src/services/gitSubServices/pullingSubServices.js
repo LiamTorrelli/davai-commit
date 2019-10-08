@@ -1,10 +1,10 @@
 // Libs
 import shell from 'shelljs'
 
-export const MERGING = {
+export const GIT_S_PULLING = {
 
-  async mergeBranch(branchName) {
-    const output = shell.exec(`git merge ${branchName}`)
+  async pullBranch(branchName) {
+    const output = shell.exec(`git pull origin ${branchName}`)
     const { stdout, stderr, code } = output
 
     return {

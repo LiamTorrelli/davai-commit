@@ -7,21 +7,22 @@ import { logError } from '../../../handlers/outputHandler'
 // Helpers
 import { cleanUpFromN } from '../../../helpers/help'
 
-export const BRANCHING = {
+export const GIT_M_MERGING = {
 
-  async setCurrentBranch() {
+  async mergeBranch(branchName) {
     try {
       const {
         result,
         code,
         ErrorMessage
-      } = await new GitService().getCurrentBranch()
+      } = await new GitService().mergeBranch(branchName)
 
       if (code !== 0) throw new Error(ErrorMessage)
 
-      this.currentBranch = cleanUpFromN(result)
+      this.mergeStatus = cleanUpFromN(result)
+
       return this
-    } catch (err) { return logError('Setting current branch failed:', err) }
+    } catch (err) { return logError(`Merging branch [ ${branchName} ] failed:`, err) }
   }
 
 }

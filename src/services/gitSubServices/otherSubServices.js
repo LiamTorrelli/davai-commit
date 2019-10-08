@@ -1,7 +1,7 @@
 // Libs
 import shell from 'shelljs'
 
-export const OTHER = {
+export const GIT_S_OTHER = {
 
   getGitStatus() {
     const output = shell.exec('git status -s -u')

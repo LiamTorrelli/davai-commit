@@ -1,7 +1,8 @@
 // Libs
 import shell from 'shelljs'
 
-export const COMMITTING = {
+export const GIT_S_COMMITTING = {
+
   async commitChanges({ msg }) {
     const output = shell.exec(`git commit -m "${msg}"`)
     const { stdout, stderr, code } = output
@@ -12,4 +13,5 @@ export const COMMITTING = {
       code
     }
   }
+
 }

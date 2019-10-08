@@ -1,6 +1,6 @@
 import shell from 'shelljs'
 
-export const TAGGING = {
+export const GIT_S_TAGGING = {
 
   async createGitTag({ description, tagName }) {
     const output = shell.exec(`git tag -a "${tagName}" -m "${description}"`)

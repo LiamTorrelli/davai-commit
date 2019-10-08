@@ -4,7 +4,7 @@ import { GitService } from '../../../services/gitService'
 // Handlers
 import { logError } from '../../../handlers/outputHandler'
 
-export const STAGING = {
+export const GIT_M_STAGING = {
 
   async stageFiles() {
     try {

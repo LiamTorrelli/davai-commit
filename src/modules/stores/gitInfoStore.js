@@ -1,18 +1,18 @@
 // Libs
 import { observable, action, autorun } from 'mobx'
 
-// Functions
+// Sub modules
 import {
-  SETTING,
-  COMMITTING,
-  BRANCHING,
-  PUSHING,
-  TAGGING,
-  MERGING,
-  OTHER,
-  STAGING,
-  PULLING
-} from './gitInfoStore/index'
+  GIT_M_SETTING,
+  GIT_M_COMMITTING,
+  GIT_M_BRANCHING,
+  GIT_M_STAGING,
+  GIT_M_PUSHING,
+  GIT_M_TAGGING,
+  GIT_M_MERGING,
+  GIT_M_PULLING,
+  GIT_M_OTHER
+} from './gitInfoSubModules/index'
 
 // Handlers
 import { logAutorun } from '../../handlers/outputHandler'
@@ -31,15 +31,15 @@ export const GitInfoStore = observable({
   tagName: '',
   tagPushStatus: '',
 
-  ...SETTING,
-  ...COMMITTING,
-  ...STAGING,
-  ...BRANCHING,
-  ...PUSHING,
-  ...TAGGING,
-  ...MERGING,
-  ...OTHER,
-  ...PULLING
+  ...GIT_M_SETTING,
+  ...GIT_M_COMMITTING,
+  ...GIT_M_BRANCHING,
+  ...GIT_M_STAGING,
+  ...GIT_M_PUSHING,
+  ...GIT_M_TAGGING,
+  ...GIT_M_MERGING,
+  ...GIT_M_PULLING,
+  ...GIT_M_OTHER
 
 }, {
   setDeveloper: action,

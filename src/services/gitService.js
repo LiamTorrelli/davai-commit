@@ -14,7 +14,6 @@ import {
 export class GitService {
   getCurrentBranch() { return BRANCHING.getCurrentBranch() }
   createBranch(args) { return BRANCHING.createBranch(args) }
-  getOpenPRs() { return BRANCHING.getOpenPRs() }
   getGitStatus() { return OTHER.getGitStatus() }
   getGitUserName() { return OTHER.getGitUserName() }
   fetchHistory() { return OTHER.fetchHistory() }

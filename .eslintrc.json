@@ -121,7 +121,7 @@
       }
     ],
     "no-nested-ternary": "warn",
-    "no-plusplus": "warn",
+    "no-plusplus": "off",
     "no-shadow": "off",
     "no-trailing-spaces": "error",
     "no-undef": "off",

@@ -1,6 +1,8 @@
+// Helpers
+import { tasks } from '../config/words'
+
 // Handlers
 import { _Errors } from './outputHandler'
-import { tasks } from '../config/words'
 
 const taskHandler = async (
   taskName,
@@ -12,7 +14,7 @@ const taskHandler = async (
       ? Promise.resolve(isTaskOkk)
       : Promise.reject((tasks[taskName].error))
     )).catch(err => {
-      console.log('!!!! taskHandler')
+      console.log('Task Errored here')
       throw new Error(err)
     })
 

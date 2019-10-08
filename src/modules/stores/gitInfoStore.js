@@ -19,7 +19,7 @@ import { logAutorun } from '../../handlers/outputHandler'
 
 export const GitInfoStore = observable({
   developer: null,
-  currentBranch: null, // setCurrentBranch
+  currentBranch: null,
   commitType: '',
   releaseType: '',
   statusedFiles: [],
@@ -55,6 +55,6 @@ export const GitInfoStore = observable({
 })
 
 autorun(() => {
-  logAutorun('Git Info')
+  // logAutorun('Git Info')
   // logStoreValues(GitInfoStore, 'GitInfoStore')
 })

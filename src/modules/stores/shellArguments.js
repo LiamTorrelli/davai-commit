@@ -67,6 +67,6 @@ export const ShellArgumentsStore = observable({
 })
 
 autorun(() => {
-  logAutorun('Shell Arguments')
+  // logAutorun('Shell Arguments')
   // logStoreValues(ShellArgumentsStore, 'ShellArgumentsStore')
 })

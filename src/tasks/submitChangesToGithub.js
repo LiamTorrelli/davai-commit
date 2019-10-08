@@ -17,6 +17,8 @@ import {
 } from '../modules/index'
 
 async function submitAllToGithub() {
+  // TODO: Separate the logic into 3 tasks
+
   const { commitMsg: enteredMsg } = ShellArgumentsStore
   const { currentBranch } = await GitInfoStore.setCurrentBranch()
   await GitInfoStore.setStatusedFiles()

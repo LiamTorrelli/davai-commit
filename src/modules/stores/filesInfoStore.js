@@ -51,6 +51,6 @@ export const FilesInfoStore = observable({
 })
 
 autorun(() => {
-  logAutorun('Files Info')
+  // logAutorun('Files Info')
   // logStoreValues(FilesInfoStore, 'FilesInfoStore')
 })

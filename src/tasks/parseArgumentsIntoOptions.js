@@ -7,11 +7,7 @@ import { ShellArgumentsStore } from '../modules/index'
  * Parsing arguments that the user sends in the console
  * @param {array} rawArgs
  *
- * Setting in the ShellArgumentsStore:
- *  * action-type [ preview | release | create ]
- *  * release-type
- *  * description
- *  * directory
+ *  * commit-message
  *
  * @return {Boolean}
  */

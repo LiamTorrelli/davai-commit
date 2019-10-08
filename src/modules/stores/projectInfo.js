@@ -68,6 +68,6 @@ export const ProjectInfoStore = observable({
 })
 
 autorun(() => {
-  logAutorun('Project Info')
+  // logAutorun('Project Info')
   // logStoreValues(ProjectInfoStore, 'ProjectInfoStore')
 })

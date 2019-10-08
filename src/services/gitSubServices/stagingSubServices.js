@@ -1,7 +1,8 @@
 // Libs
 import shell from 'shelljs'
 
-export const STAGING = {
+export const GIT_S_STAGING = {
+
   async addFilesToGitStage(allFiles = true) {
     // TODO: abilty to choose files to add to commit
     const action = allFiles ? 'add .' : 'add .'
@@ -15,4 +16,5 @@ export const STAGING = {
       code
     }
   }
+
 }

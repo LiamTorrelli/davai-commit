@@ -12,7 +12,7 @@ import {
   OTHER,
   STAGING,
   PULLING
-} from './gitInfoStore/index'
+} from './gitInfoSubStores/index'
 
 // Handlers
 import { logAutorun } from '../../handlers/outputHandler'

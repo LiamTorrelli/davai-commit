@@ -1,10 +1,9 @@
 {
-  "name": "@kazakoff/davai-commit",
-  "version": "1.0.0",
+  "name": "davai-commit",
+  "version": "1.0.1",
   "description": "Commiting tools",
   "main": "src/cli.js",
   "bin": {
-    "@kazakoff/davai-commit": "bin/davai-commit",
     "davai-commit": "bin/davai-commit"
   },
   "publishConfig": {
@@ -12,7 +11,9 @@
   },
   "keywords": [
     "cli",
-    "wechat-deploy"
+    "smart commit",
+    "generate commit message",
+    "committing-tools"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

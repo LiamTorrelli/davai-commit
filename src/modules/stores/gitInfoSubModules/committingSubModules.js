@@ -30,11 +30,14 @@ export const GIT_M_COMMITTING = {
         ErrorMessage
       } = await new GitService().commitChanges({ commitMessage })
 
-      if (code !== 0
-        && !result.includes('nothing to commit, working tree clean')
-      ) throw new Error(ErrorMessage)
+      if (code !== 0 && code !== 1) throw new Error(ErrorMessage)
+      this.goingToPush = false
 
-      this.goingToPush = !result.includes('nothing to commit, working tree clean')
+      if (code === 0) this.goingToPush = true
+      else if (code === 1) {
+        this.goingToPush = !result.includes('nothing to commit, working tree clean')
+      }
+
       this.commitStatus = result
       return this
     } catch (err) { return logError('Committing changes failed:', err) }

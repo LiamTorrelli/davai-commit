@@ -16,7 +16,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint --color --format table --quiet src"
+    "eslint": "eslint --color --format table --quiet src",
+    "debug": "node --inspect --experimental-modules bin/davai-commit"
   },
   "repository": {
     "type": "git",

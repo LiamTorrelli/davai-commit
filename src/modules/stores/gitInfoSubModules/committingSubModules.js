@@ -35,7 +35,7 @@ export const GIT_M_COMMITTING = {
 
       if (code === 0) this.goingToPush = true
       else if (code === 1) {
-        this.goingToPush = !result.includes('nothing to commit, working tree clean')
+        this.goingToPush = result.includes('nothing to commit, working tree clean')
       }
 
       this.commitStatus = result

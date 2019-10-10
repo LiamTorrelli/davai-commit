@@ -65,6 +65,11 @@ export const EmailInfoStore = observable({
         <i>${branch}</i> [ ${dateString} ]
       </span>
     </h1>
+    <h3 style="font-family: ${fontFamily};margin-bottom:0px;font-size:16px;">
+      <span style="color: ${colors.darkBlue};">
+        <b>Commit message</b>
+      </span>
+    </h3>
     <table
       style="border-collapse:collapse;border-spacing:0;table-layout: fixed; width: 650px" class="tg"
     >

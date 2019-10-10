@@ -85,6 +85,21 @@ export const EmailInfoStore = observable({
       text-align:center;
       vertical-align:middle;
     `
+    const tableDataDescriptionStyles = `
+      font-family: ${fontFamily};
+      font-size:14px;
+      padding:10px 5px;
+      border-style:solid;
+      border-width:1px;
+      overflow-x:scroll;
+      word-break:normal;
+      border-color:black;
+      text-align:left;
+      vertical-align:middle;
+    `
+    const commitDescription = commitMessage.body.includes('Automatic commit')
+      ? `${developer} worked on the task \n\n Automatically generated message... `
+      : commitMessage.body
 
     const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:5px;font-size:20px;">
       <b>
@@ -104,7 +119,7 @@ export const EmailInfoStore = observable({
       <colgroup>
         <col style="width: 130px">
           <col style="width: 140px">
-            <col style="width: 380px">
+            <col style="width: 500px">
       </colgroup>
       <tr>
         <td style="${tableHeaderStyles}"> COMMIT TIME </td>
@@ -114,9 +129,9 @@ export const EmailInfoStore = observable({
       <tr>
         <td style="${tableDataStyles}"> ${dateString} </td>
         <td style="${tableDataStyles}"> ${branch} </td>
-        <td style="${tableDataStyles}">
+        <td style="${tableDataDescriptionStyles}">
           <code><pre>${commitMessage.head}<br /></pre></code>
-          <code><pre>${commitMessage.body.split('-').join('').split('☐☐').join('☐ <-> ☐')}<br /></pre></code>
+          <code><pre>${commitDescription.split('-').join('').split('☐☐').join('☐ ... ☐')}<br /></pre></code>
         </td>
       </tr>
     </table>

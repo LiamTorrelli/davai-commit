@@ -17,6 +17,7 @@ const toWeeks = timestamp => Math.floor((toDays(timestamp) + 3) / 7) // 1970-01-
 const getWeekDay = timestamp => getDay(timestamp) // 0 - Sunday
 
 const month = (timestamp, lang, needFull) => MONTHS[lang][needFull ? 'full' : 'short'][getMonth(timestamp)]
+const monthNumber = timestamp => MONTHS['NUMBER'][getMonth(timestamp)]
 const weekDay = (timestamp, lang, needFull) => WEEKDAYS[lang][needFull ? 'full' : 'short'][getWeekDay(timestamp)]
 const day = (timestamp, lang) => DAYS[lang][getDate(timestamp)]
 
@@ -55,7 +56,7 @@ class HumanDate {
     return {
       day: day(date, this.lang),
       dayNumber: addZero(getDate(date)),
-      monthNumber: addZero(getMonth(date)),
+      monthNumber: addZero(monthNumber(date)),
       month: month(date, this.lang, needFull),
       weekDay: weekDay(date, this.lang, needFull),
       year: getFullYear(date),

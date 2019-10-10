@@ -34,10 +34,13 @@ async function composeEmailHeader() {
 }
 
 async function composeEmailBody() {
-  const { developer, currentBranch } = await GitInfoStore
+  const { actionTime } = await ProjectInfoStore.setActionTime()
+  const { developer, currentBranch, commitMessage } = await GitInfoStore
   const { BODY_CONTENT } = EmailInfoStore.setEmailBody({
     branch: currentBranch,
-    developer
+    actionTime,
+    developer,
+    commitMessage
   })
 
   return BODY_CONTENT

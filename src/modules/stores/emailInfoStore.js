@@ -33,16 +33,17 @@ export const EmailInfoStore = observable({
   setEmailBody({
     actionTime = null,
     developer = null,
-    branch = null
+    branch = null,
+    commitMessage = null
   }) {
-    if (!actionTime || !developer || !branch) return logError(
+    if (!actionTime || !developer || !branch || !commitMessage) return logError(
       'Setting email header failed:',
-      'No actionTime | developer | branch'
+      'No actionTime | developer | branch | commitMessage'
     )
 
     const { day, month, time } = actionTime
 
-    const dateString = `${month} ${day} [ ${time} ]`
+    const dateString = `${month}/${day} ${time}`
 
     const LANG = 'en'
     const fontFamily = LANG === 'ru'
@@ -71,6 +72,7 @@ export const EmailInfoStore = observable({
         <col style="width: 130px">
           <col style="width: 140px">
             <col style="width: 380px">
+            ${commitMessage}
       </colgroup>
     </table>
     <br />

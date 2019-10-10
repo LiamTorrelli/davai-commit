@@ -20,7 +20,7 @@ export async function cli(args) {
     await parseArgumentsIntoOptions(args)
     await promptForMissingOptions()
     await startUpTasks()
-    // await submitChangesToGithub()
+    await submitChangesToGithub()
     await sendEmailTasks()
 
     logFinish('Commit was sent')

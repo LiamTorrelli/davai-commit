@@ -37,7 +37,7 @@ async function setDeveloper() {
 }
 
 async function setProjectInfo() {
-  const { actionTime } = ProjectInfoStore.setActionDate()
+  const { actionTime } = ProjectInfoStore.setActionTime()
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
 
   return !__isEmpty(actionTime) && !__isEmpty(PROJECT_NAME)

@@ -23,7 +23,7 @@ export const ProjectInfoStore = observable({
     }, obj)
     return this
   },
-  setActionDate() {
+  setActionTime() {
     try {
       const actionTime = new HumanDate(new Date(), 'en', false)
         .setNeededParam('humanDateObj')
@@ -61,7 +61,7 @@ export const ProjectInfoStore = observable({
 
 }, {
   setProjectInfo: action,
-  setActionDate: action,
+  setActionTime: action,
   setReleaseDescription: action,
   setOldVersion: action,
   setNewVersion: action

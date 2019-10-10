@@ -16,7 +16,8 @@ import { __isEmpty } from '../helpers/help'
 import {
   ProjectInfoStore,
   GitInfoStore,
-  FilesInfoStore
+  FilesInfoStore,
+  EmailInfoStore
 } from '../modules/index'
 
 // Functions
@@ -24,69 +25,63 @@ import {
 async function composeEmailHeader() {
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { currentBranch } = await GitInfoStore.setCurrentBranch()
+  const { HEADER_CONTENT } = EmailInfoStore.setEmailHeader({
+    projectName: PROJECT_NAME,
+    branch: currentBranch
+  })
 
-  console.log('EMAIL_CONFIG', EMAIL_CONFIG)
-  console.log('PROJECT_NAME', PROJECT_NAME)
-  console.log('currentBranch', currentBranch)
-  const HEADER_CONTENT = 'Wuhan Zan TASK: WHZN-332'
-  return false
+  return HEADER_CONTENT
 }
 
 async function composeEmailBody() {
-  const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:20px;font-size:20px;">
-    <i>KAZAKOV ARTEM</i> created a
-    <span style="color: ${colors.green};">
-      <b>COMMIT</b> =>
-      <i>WHZN-332</i> [ 11/10/2019 11:10:05 ]
-    </span>
-  </h1>
-  <table
-    style="border-collapse:collapse;border-spacing:0;table-layout: fixed; width: 650px" class="tg"
-  >
-    <colgroup>
-      <col style="width: 130px">
-        <col style="width: 140px">
-          <col style="width: 380px">
-    </colgroup>
-  </table>
-  <br />
-  <hr />`
+  const { developer, currentBranch } = await GitInfoStore
+  const { BODY_CONTENT } = EmailInfoStore.setEmailBody({
+    branch: currentBranch,
+    developer
+  })
 
-  return false
+  return BODY_CONTENT
 }
 
 async function composeEmailFooter() {
-  const FOOTER_CONTENT = '<i>Date sent: 09/10/2019 11:00:09</i>'
-  return false
+  const { actionTime } = await ProjectInfoStore.setActionTime()
+  const { FOOTER_CONTENT } = await EmailInfoStore.setEmailFooter({ actionTime })
+
+  return FOOTER_CONTENT
 }
 
 async function sendEmail() {
   const { EMAIL_CONFIG } = await FilesInfoStore.setEmailCreds()
+  if (!EMAIL_CONFIG) {
+    logError('Cannot send email', 'NO EMAIL CONFIG')
+    return false
+  }
+  const { HEADER_CONTENT, BODY_CONTENT, FOOTER_CONTENT } = await EmailInfoStore
 
-  const transporter = await nodemailer.createTransport({
-    service: 'Yandex',
-    auth: {
-      user: 'a.kazakov@incodewetrust.ru',
-      pass: 'kazakov24.7'
-    }
-  })
-
-  const LANG = 'en'
-  const fontFamily = LANG === 'ru'
-    ? 'Courier, monospace'
-    : 'monospace'
-
-  const colors = {
-    green: '#28bb71',
-    darkBlue: '#3776c3',
-    red: '#cb382d',
-    lightBlue: '#2fa9cf',
-    yellow: '#d0d009'
+  if (!HEADER_CONTENT || !BODY_CONTENT || !FOOTER_CONTENT) {
+    logError('Cannot send email', 'Composed email not correctly')
+    return false
   }
 
+  const {
+    LOGIN,
+    PASS,
+    SERVICE,
+    SENDER_LIST
+  } = EMAIL_CONFIG
+
+  const transporter = await nodemailer.createTransport({
+    service: SERVICE,
+    auth: {
+      user: LOGIN,
+      pass: PASS
+    }
+  })
+  const { developer } = await GitInfoStore
+
   const mailOptions = {
-    from: 'KAZAKOV ARTEM <a.kazakov@incodewetrust.ru>',
-    to: 'a.kazakov@incodewetrust.ru',
+    from: `${developer} <${LOGIN}>`,
+    to: `${SENDER_LIST}`,
     subject: `${HEADER_CONTENT}`,
     html: `
     ${BODY_CONTENT}
@@ -106,8 +101,7 @@ async function sendEmail() {
     })
   })
 
-  // return sendTheEmail()
-  return false
+  return sendTheEmail()
 }
 
 /**
@@ -126,18 +120,15 @@ export async function sendEmailTasks() {
     },
     { /*  ** composeEmailBody **  */
       task: () => taskHandler('composeEmailBody', composeEmailBody),
-      title: tasks['composeEmailBody'].title,
-      enabled: () => false
+      title: tasks['composeEmailBody'].title
     },
     { /*  ** composeEmailFooter **  */
       task: () => taskHandler('composeEmailFooter', composeEmailFooter),
-      title: tasks['composeEmailFooter'].title,
-      enabled: () => false
+      title: tasks['composeEmailFooter'].title
     },
     { /*  ** sendEmail **  */
       task: () => taskHandler('sendEmail', sendEmail),
-      title: tasks['sendEmail'].title,
-      enabled: () => false
+      title: tasks['sendEmail'].title
     }
   ])
 

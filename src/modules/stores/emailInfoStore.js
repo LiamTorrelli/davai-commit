@@ -12,21 +12,92 @@ import { EmailService } from '../../services/emailService'
 import { logError, logAutorun, logStoreValues } from '../../handlers/outputHandler'
 
 export const EmailInfoStore = observable({
-  header: null,
+  HEADER_CONTENT: null,
+  BODY_CONTENT: null,
+  FOOTER_CONTENT: null,
 
-  setEmailHeader() {
-    try {
-      // const developerName = new EmailService()
-      //   .getDeveloperName()
+  setEmailHeader({
+    projectName = null,
+    branch = null
+  }) {
+    if (!projectName || !branch) return logError(
+      'Setting email header failed:',
+      'No projectName | branch'
+    )
 
-      const header = 'Wuhan Zan TASK: WHZN-332'
-      this.header = header
-      return this
-    } catch (err) { return logError('Setting Release Action Date failed:', err) }
+    this.HEADER_CONTENT = `${projectName} TASK: ${branch}`
+
+    return this
+  },
+
+  setEmailBody({
+    actionTime = null,
+    developer = null,
+    branch = null
+  }) {
+    if (!actionTime || !developer || !branch) return logError(
+      'Setting email header failed:',
+      'No actionTime | developer | branch'
+    )
+
+    const { day, month, time } = actionTime
+
+    const dateString = `${month} ${day} [ ${time} ]`
+
+    const LANG = 'en'
+    const fontFamily = LANG === 'ru'
+      ? 'Courier, monospace'
+      : 'monospace'
+
+    const colors = {
+      green: '#28bb71',
+      darkBlue: '#3776c3',
+      red: '#cb382d',
+      lightBlue: '#2fa9cf',
+      yellow: '#d0d009'
+    }
+
+    const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:20px;font-size:20px;">
+      <i>${developer}</i>
+      <span style="color: ${colors.green};">
+        <b>COMMITTED</b> =>
+        <i>${branch}</i> [ ${dateString} ]
+      </span>
+    </h1>
+    <table
+      style="border-collapse:collapse;border-spacing:0;table-layout: fixed; width: 650px" class="tg"
+    >
+      <colgroup>
+        <col style="width: 130px">
+          <col style="width: 140px">
+            <col style="width: 380px">
+      </colgroup>
+    </table>
+    <br />
+    <hr />`
+
+    this.BODY_CONTENT = BODY_CONTENT
+
+    return this
+  },
+
+  setEmailFooter({
+    actionTime = null
+  }) {
+    if (!actionTime) return logError('Setting email header failed:', 'No actionTime')
+    const { day, month, time } = actionTime
+
+    const dateString = `${month} ${day} [ ${time} ]`
+
+    this.FOOTER_CONTENT = `<i>Date sent: ${dateString}</i>`
+
+    return this
   }
 
 }, {
-  setEmailHeader: action
+  setEmailHeader: action,
+  setEmailBody: action,
+  setEmailFooter: action
 })
 
 autorun(() => {

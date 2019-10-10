@@ -89,9 +89,7 @@ export const EmailInfoStore = observable({
     const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:5px;font-size:20px;">
       <b>
         ${developer}
-        <span style="text-decoration: underline;color: ${colors.green};">
-          worked on the task
-        </span> <i>${branch}</i>
+        <span style="color: ${colors.green};"> worked on the task</span> ${branch}
       </b>
     </h1>
     <hr />
@@ -109,8 +107,8 @@ export const EmailInfoStore = observable({
             <col style="width: 380px">
       </colgroup>
       <tr>
-        <td style="${tableHeaderStyles}"> COMMIT DATE </td>
-        <td style="${tableHeaderStyles}"> COMMIT NAME </td>
+        <td style="${tableHeaderStyles}"> COMMIT TIME </td>
+        <td style="${tableHeaderStyles}"> TASK NAME </td>
         <td style="${tableHeaderStyles}"> COMMIT DESCRIPTION </td>
       </tr>
       <tr>

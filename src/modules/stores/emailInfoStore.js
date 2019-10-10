@@ -28,12 +28,12 @@ export const EmailInfoStore = observable({
       'No projectName | branch | actionTime'
     )
     const {
-      day,
+      dayNumber,
       year,
       time,
       monthNumber
     } = actionTime
-    const dateString = `${day}/${monthNumber}/${year} ${time}`
+    const dateString = `${dayNumber}-${monthNumber}-${year} ${time}`
     this.HEADER_CONTENT = `${dateString} ¯\\_(ツ)_/¯¯ ${projectName.toString().toLowerCase()} ¯¯\\_ : ${branch}`
 
     return this

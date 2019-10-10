@@ -73,7 +73,7 @@ export const EmailInfoStore = observable({
           <col style="width: 140px">
             <col style="width: 380px">
             <code><pre>${commitMessage.head}<br /></pre></code>
-            <code><pre>${commitMessage.body.split('\n').join('\n\n')}</pre></code>
+            <code><pre>${commitMessage.body.split('\n').join('\n')}</pre></code>
       </colgroup>
     </table>
     <br />

@@ -97,7 +97,7 @@ export const EmailInfoStore = observable({
       text-align:left;
       vertical-align:middle;
     `
-    const commitDescription = commitMessage.body.includes('Automatic commit')
+    const commitDescription = commitMessage.head.includes('Automatic commit')
       ? `${developer} worked on the task \n\n Automatically generated message... `
       : commitMessage.body
 
@@ -137,7 +137,7 @@ export const EmailInfoStore = observable({
     </table>
     <h3 style="font-family: ${fontFamily};margin-bottom:0px;font-size:16px;">
       <span style="color: ${colors.darkBlue};">
-        <b>Commit message</b>
+        <b>Full commit message</b>
       </span>
     </h3>
     <code><pre>${commitMessage.head}<br /></pre></code>

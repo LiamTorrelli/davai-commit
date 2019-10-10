@@ -76,6 +76,7 @@ export const EmailInfoStore = observable({
       word-break:normal;
       vertical-align:middle;
       border-color:black;
+      text-align:center;
     `
     const tableHeaderStyles = `${defaultTableCellStyles}font-weight:bold;`
     const tableDataDescriptionStyles = `${defaultTableCellStyles}text-align:left;overflow-x:scroll;`
@@ -120,7 +121,6 @@ export const EmailInfoStore = observable({
         <td style="${defaultTableCellStyles}"> ${branch} </td>
         <td style="${tableDataDescriptionStyles}">
           <code><pre>${fullDescription}</pre></code>
-          <code><pre>${commitBody.split('-').join('').split('☐☐').join('☐ ... ☐')}<br /></pre></code>
         </td>
       </tr>
     </table>

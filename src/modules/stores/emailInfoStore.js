@@ -67,51 +67,28 @@ export const EmailInfoStore = observable({
       lightBlue: '#2fa9cf',
       yellow: '#d0d009'
     }
-    const tableHeaderStyles = `
+    const defaultTableCellStyles = `
       font-family: ${fontFamily};
       font-size:14px;
       padding:10px 5px;
       border-style:solid;
       border-width:1px;
-      overflow:hidden;
       word-break:normal;
-      border-color:black;
-      font-weight:bold;
-      text-align:center;
       vertical-align:middle;
+      border-color:black;
     `
+    const tableHeaderStyles = `${defaultTableCellStyles}font-weight:bold;`
+    const tableDataDescriptionStyles = `${defaultTableCellStyles}text-align:left;overflow-x:scroll;`
 
-    const tableDataStyles = `
-      font-family: ${fontFamily};
-      font-size:14px;
-      padding:10px 5px;
-      border-style:solid;
-      border-width:1px;
-      overflow:hidden;
-      word-break:normal;
-      border-color:black;
-      text-align:center;
-      vertical-align:middle;
-    `
-    const tableDataDescriptionStyles = `
-      font-family: ${fontFamily};
-      font-size:14px;
-      padding:10px 5px;
-      border-style:solid;
-      border-width:1px;
-      overflow-x:scroll;
-      word-break:normal;
-      border-color:black;
-      text-align:left;
-      vertical-align:middle;
-    `
     const commitHead = commitMessage.head.includes('Automatic commit')
       ? ''
-      : commitMessage.head
+      : `${commitMessage.head}\n`
 
     const commitBody = commitMessage.head.includes('Automatic commit')
-      ? `${developerName} worked on the task \n\n Automatically generated message... `
-      : commitMessage.body
+      ? `${developerName} worked on the task \n\nAutomatically generated message... `
+      : commitMessage.body.split('-').join('').split('☐☐').join('☐ ... ☐')
+
+    const fullDescription = `${commitHead}${commitBody}`
 
     const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:5px;font-size:20px;">
       <b>
@@ -139,10 +116,10 @@ export const EmailInfoStore = observable({
         <td style="${tableHeaderStyles}"> COMMIT DESCRIPTION </td>
       </tr>
       <tr>
-        <td style="${tableDataStyles}"> ${dateString} </td>
-        <td style="${tableDataStyles}"> ${branch} </td>
+        <td style="${defaultTableCellStyles}"> ${dateString} </td>
+        <td style="${defaultTableCellStyles}"> ${branch} </td>
         <td style="${tableDataDescriptionStyles}">
-          <code><pre>${commitHead}<br /></pre></code>
+          <code><pre>${fullDescription}</pre></code>
           <code><pre>${commitBody.split('-').join('').split('☐☐').join('☐ ... ☐')}<br /></pre></code>
         </td>
       </tr>

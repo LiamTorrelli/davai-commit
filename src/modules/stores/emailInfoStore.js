@@ -21,11 +21,12 @@ export const EmailInfoStore = observable({
   setEmailHeader({
     projectName = null,
     branch = null,
-    actionTime = null
+    actionTime = null,
+    developer = null
   }) {
-    if (!projectName || !branch || !actionTime) return logError(
+    if (!projectName || !branch || !actionTime || !developer) return logError(
       'Setting email header failed:',
-      'No projectName | branch | actionTime'
+      'No projectName | branch | actionTime | developer'
     )
     const {
       dayNumber,
@@ -33,8 +34,10 @@ export const EmailInfoStore = observable({
       time,
       monthNumber
     } = actionTime
+    const developerName = cleanUpFromN(developer)
+
     const dateString = `${dayNumber}-${monthNumber}-${year} ${time}`
-    this.HEADER_CONTENT = `${dateString} ¯\\_(ツ)_/¯¯ ${projectName.toString().toLowerCase()} ¯¯\\_ : ${branch}`
+    this.HEADER_CONTENT = `${dateString} ¯\\_(ツ)_/¯¯ ${projectName.toString().toLowerCase()} ¯¯\\_ : ${branch} : ${developerName}`
 
     return this
   },

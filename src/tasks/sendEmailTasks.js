@@ -25,11 +25,12 @@ import {
 async function composeEmailHeader() {
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { actionTime } = await ProjectInfoStore.setActionTime()
-  const { currentBranch } = await GitInfoStore.setCurrentBranch()
+  const { developer, currentBranch } = await GitInfoStore.setCurrentBranch()
   const { HEADER_CONTENT } = EmailInfoStore.setEmailHeader({
     projectName: PROJECT_NAME,
     branch: currentBranch,
-    actionTime
+    actionTime,
+    developer
   })
 
   return HEADER_CONTENT

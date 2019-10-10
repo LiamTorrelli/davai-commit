@@ -27,7 +27,7 @@ export const EmailInfoStore = observable({
       'No projectName | branch'
     )
 
-    this.HEADER_CONTENT = `¯\\_(ツ)_/¯ Project: <i>${projectName.toString().toLowerCase()}</i> Task: ${branch}`
+    this.HEADER_CONTENT = `¯\\_(ツ)_/¯ Project: ${projectName.toString().toLowerCase()} <-----> ${branch}`
 
     return this
   },

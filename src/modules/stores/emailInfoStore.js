@@ -125,9 +125,9 @@ export const EmailInfoStore = observable({
         <td style="${tableHeaderStyles}"> COMMIT DESCRIPTION </td>\n
       </tr>
       <tr>
-        <td style="${tableHeaderStyles}"> ${dateString} </td>\n
-        <td style="${tableHeaderStyles}"> ${branch} </td>\n
-        <td style="${tableHeaderStyles}"> <code><pre>${commitMessage.head}<br /></pre></code> </td>\n
+        <td style="${tableDataStyles}"> ${dateString} </td>\n
+        <td style="${tableDataStyles}"> ${branch} </td>\n
+        <td style="${tableDataStyles}"> <code><pre>${commitMessage.head}<br /></pre></code> </td>\n
       </tr>
 
       <code><pre>${commitMessage.head}<br /></pre></code>

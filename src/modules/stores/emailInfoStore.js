@@ -27,7 +27,7 @@ export const EmailInfoStore = observable({
       'No projectName | branch'
     )
 
-    this.HEADER_CONTENT = `${projectName} TASK: ${branch}`
+    this.HEADER_CONTENT = `Project: ${projectName.toString().toLowerCase()} ¯\\_(ツ)_/¯ TASK: ${branch}`
 
     return this
   },
@@ -85,19 +85,6 @@ export const EmailInfoStore = observable({
       text-align:center;
       vertical-align:middle;
     `
-
-    // const generateTableHeader = async(paramsArray, actionType, lang) => {
-    //   let html = ''
-    //   let keys = []
-    //   let values = []
-    //   paramsArray.forEach(param => {
-    //     keys.push(param.key)
-    //     values.push(param.value)
-    //   })
-    //   html+=`<tr>${ await getTableHeader(await keys, actionType, lang) }</tr>\n`
-    //   html+=`<tr>${ await getTableData(await values) }</tr>`
-    //   return await html
-    // }
 
     const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:20px;font-size:20px;">
       <i>${developer}</i>

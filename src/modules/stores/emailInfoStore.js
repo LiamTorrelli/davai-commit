@@ -50,6 +50,8 @@ export const EmailInfoStore = observable({
       'No actionTime | developer | branch | commitMessage'
     )
 
+    const isAutomatic = commitMessage.head.includes('Automatic commit')
+
     const { day, month, time } = actionTime
     const developerName = cleanUpFromN(developer)
 
@@ -81,17 +83,14 @@ export const EmailInfoStore = observable({
     const tableHeaderStyles = `${defaultTableCellStyles}font-weight:bold;`
     const tableDataDescriptionStyles = `
       ${defaultTableCellStyles}
-      text-align:
-      ${commitMessage.head.includes('Automatic commit') ? 'center' : 'left'};
+      text-align: ${isAutomatic ? 'center' : 'left'};
       overflow-x:scroll;
     `
 
-    const commitHead = commitMessage.head.includes('Automatic commit')
-      ? ''
-      : `${commitMessage.head}\n`
+    const commitHead = isAutomatic ? '' : `${commitMessage.head}\n`
 
-    const commitBody = commitMessage.head.includes('Automatic commit')
-      ? `❍ ${developerName} worked on the task \n\nAutomatically generated message... `
+    const commitBody = isAutomatic
+      ? `❍ ${developerName} worked on the task \n`
       : commitMessage.body.split('-').join('').split('☐☐').join('☐ ... ☐')
 
     const fullDescription = `${commitHead}${commitBody}`
@@ -126,6 +125,7 @@ export const EmailInfoStore = observable({
         <td style="${defaultTableCellStyles}"> ${branch} </td>
         <td style="${tableDataDescriptionStyles}">
           <code><pre>${fullDescription}</pre></code>
+          ${isAutomatic ? '<i>Automatically generated message...</i>' : ''}
         </td>
       </tr>
     </table>

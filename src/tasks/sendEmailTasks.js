@@ -26,7 +26,9 @@ import {
 async function composeEmailHeader() {
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { actionTime } = await ProjectInfoStore.setActionTime()
-  const { developer, currentBranch } = await GitInfoStore.setCurrentBranch()
+  const { developer } = await GitInfoStore.setDeveloper()
+  const { currentBranch } = await GitInfoStore.setCurrentBranch()
+
   const { HEADER_CONTENT } = EmailInfoStore.setEmailHeader({
     projectName: PROJECT_NAME,
     branch: currentBranch,
@@ -39,12 +41,13 @@ async function composeEmailHeader() {
 
 async function composeEmailBody() {
   const { actionTime } = await ProjectInfoStore.setActionTime()
+  const { commitMsg } = await ShellArgumentsStore
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { developer, currentBranch, commitMessage } = await GitInfoStore
   const { BODY_CONTENT } = EmailInfoStore.setEmailBody({
     branch: currentBranch,
     projectName: PROJECT_NAME,
-    commitMessage,
+    commitMessage: commitMessage || commitMsg,
     actionTime,
     developer
   })

@@ -1,3 +1,5 @@
+/* eslint-disable no-unexpected-multiline */
+/* eslint-disable template-tag-spacing */
 import { observable, action, autorun } from 'mobx'
 import { mapObjIndexed } from 'ramda'
 
@@ -57,6 +59,45 @@ export const EmailInfoStore = observable({
       lightBlue: '#2fa9cf',
       yellow: '#d0d009'
     }
+    const tableHeaderStyles = `
+      font-family: ${fontFamily};
+      font-size:14px;
+      padding:10px 5px;
+      border-style:solid;
+      border-width:1px;
+      overflow:hidden;
+      word-break:normal;
+      border-color:black;
+      font-weight:bold;
+      text-align:center;
+      vertical-align:middle;
+    `
+
+    const tableDataStyles = `
+      font-family: ${fontFamily};
+      font-size:14px;
+      padding:10px 5px;
+      border-style:solid;
+      border-width:1px;
+      overflow:hidden;
+      word-break:normal;
+      border-color:black;
+      text-align:center;
+      vertical-align:middle;
+    `
+
+    // const generateTableHeader = async(paramsArray, actionType, lang) => {
+    //   let html = ''
+    //   let keys = []
+    //   let values = []
+    //   paramsArray.forEach(param => {
+    //     keys.push(param.key)
+    //     values.push(param.value)
+    //   })
+    //   html+=`<tr>${ await getTableHeader(await keys, actionType, lang) }</tr>\n`
+    //   html+=`<tr>${ await getTableData(await values) }</tr>`
+    //   return await html
+    // }
 
     const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:20px;font-size:20px;">
       <i>${developer}</i>
@@ -77,9 +118,21 @@ export const EmailInfoStore = observable({
         <col style="width: 130px">
           <col style="width: 140px">
             <col style="width: 380px">
-            <code><pre>${commitMessage.head}<br /></pre></code>
-            <code><pre>${commitMessage.body.split('\n').join('\n')}</pre></code>
       </colgroup>
+      <tr>
+        <td style="${tableHeaderStyles}"> COMMIT DATE </td>\n
+        <td style="${tableHeaderStyles}"> COMMIT NAME </td>\n
+        <td style="${tableHeaderStyles}"> COMMIT DESCRIPTION </td>\n
+      </tr>
+      <tr>
+        <td style="${tableHeaderStyles}"> ${dateString} </td>\n
+        <td style="${tableHeaderStyles}"> ${branch} </td>\n
+        <td style="${tableHeaderStyles}"> <code><pre>${commitMessage.head}<br /></pre></code>
+        <code><pre>${commitMessage.body.split('\n').join('\n')}</pre></code> </td>\n
+      </tr>
+
+      <code><pre>${commitMessage.head}<br /></pre></code>
+      <code><pre>${commitMessage.body.split('\n').join('\n')}</pre></code>
     </table>
     <br />
     <hr />`

@@ -5,6 +5,9 @@ import { startUpTasks } from './tasks/startUpTasks'
 import { sendEmailTasks } from './tasks/sendEmailTasks'
 import { submitChangesToGithub } from './tasks/submitChangesToGithub'
 
+// Stores
+import { ShellArgumentsStore } from './modules/index'
+
 // Handlers
 import {
   logError,
@@ -20,10 +23,11 @@ export async function cli(args) {
     await parseArgumentsIntoOptions(args)
     await promptForMissingOptions()
     await startUpTasks()
-    await submitChangesToGithub()
-    await sendEmailTasks()
+    const { sendCommit, sendEmail } = ShellArgumentsStore
+    if (sendCommit) await submitChangesToGithub()
+    if (sendEmail) await sendEmailTasks()
 
-    logFinish('Commit was sent')
+    logFinish('All tasks were finished!')
     return logICWT()
   } catch (error) { console.log('Error is here'); logError(error) }
 

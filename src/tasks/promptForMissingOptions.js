@@ -37,7 +37,7 @@ async function promptForMissingOptions() {
   const answers = await inquirer.prompt(questions)
 
   ShellArgumentsStore.setCommitMessage(commitMsg || answers.commitMsg)
-  ShellArgumentsStore.setSendCommit(sendCommit || answers.commitMsg)
+  ShellArgumentsStore.setSendCommit(sendCommit || answers.sendCommit)
   ShellArgumentsStore.setSendEmail(sendEmail || answers.sendEmail)
 
   return true

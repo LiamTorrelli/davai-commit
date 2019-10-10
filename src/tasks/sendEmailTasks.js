@@ -24,8 +24,6 @@ import {
 // Functions
 
 async function composeEmailHeader() {
-  console.log('sendCommit', ShellArgumentsStore.sendCommit)
-  console.log('sendEmail', ShellArgumentsStore.sendEmail)
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { actionTime } = await ProjectInfoStore.setActionTime()
   const { developer, currentBranch } = await GitInfoStore.setCurrentBranch()

@@ -106,11 +106,6 @@ export const EmailInfoStore = observable({
         <i>${branch}</i> [ ${dateString} ]
       </span>
     </h1>
-    <h3 style="font-family: ${fontFamily};margin-bottom:0px;font-size:16px;">
-      <span style="color: ${colors.darkBlue};">
-        <b>Commit message</b>
-      </span>
-    </h3>
     <table
       style="border-collapse:collapse;border-spacing:0;table-layout: fixed; width: 650px" class="tg"
     >
@@ -120,19 +115,23 @@ export const EmailInfoStore = observable({
             <col style="width: 380px">
       </colgroup>
       <tr>
-        <td style="${tableHeaderStyles}"> COMMIT DATE </td>\n
-        <td style="${tableHeaderStyles}"> COMMIT NAME </td>\n
-        <td style="${tableHeaderStyles}"> COMMIT DESCRIPTION </td>\n
+        <td style="${tableHeaderStyles}"> COMMIT DATE </td>
+        <td style="${tableHeaderStyles}"> COMMIT NAME </td>
+        <td style="${tableHeaderStyles}"> COMMIT DESCRIPTION </td>
       </tr>
       <tr>
-        <td style="${tableDataStyles}"> ${dateString} </td>\n
-        <td style="${tableDataStyles}"> ${branch} </td>\n
-        <td style="${tableDataStyles}"> <code><pre>${commitMessage.head}<br /></pre></code> </td>\n
+        <td style="${tableDataStyles}"> ${dateString} </td>
+        <td style="${tableDataStyles}"> ${branch} </td>
+        <td style="${tableDataStyles}"> <code><pre>${commitMessage.head}<br /></pre></code> </td>
       </tr>
-
-      <code><pre>${commitMessage.head}<br /></pre></code>
-      <code><pre>${commitMessage.body.split('\n').join('\n')}</pre></code>
     </table>
+    <h3 style="font-family: ${fontFamily};margin-bottom:0px;font-size:16px;">
+      <span style="color: ${colors.darkBlue};">
+        <b>Commit message</b>
+      </span>
+    </h3>
+    <code><pre>${commitMessage.head}<br /></pre></code>
+    <code><pre>${commitMessage.body}</pre></code>
     <br />
     <hr />`
 

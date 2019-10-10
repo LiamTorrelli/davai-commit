@@ -54,7 +54,7 @@ const getEmailFooter = lang => `<div>
   ${ getFormattedDate() }
 </div>
 `
-
+  
 /**
  * HEADER LAYOUT
  * generateTableHeader =>

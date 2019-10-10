@@ -114,7 +114,10 @@ export const EmailInfoStore = observable({
       <tr>
         <td style="${tableDataStyles}"> ${dateString} </td>
         <td style="${tableDataStyles}"> ${branch} </td>
-        <td style="${tableDataStyles}"> <code><pre>${commitMessage.head}<br /></pre></code> </td>
+        <td style="${tableDataStyles}">
+          <code><pre>${commitMessage.head}<br /></pre></code>
+          <code><pre>${commitMessage.body.split('-').join('').split('☐☐').join('☐ <-> ☐')}<br /></pre></code>
+        </td>
       </tr>
     </table>
     <h3 style="font-family: ${fontFamily};margin-bottom:0px;font-size:16px;">

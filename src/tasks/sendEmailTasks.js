@@ -17,12 +17,14 @@ import {
   ProjectInfoStore,
   GitInfoStore,
   FilesInfoStore,
-  EmailInfoStore
+  EmailInfoStore,
+  ShellArgumentsStore
 } from '../modules/index'
 
 // Functions
 
 async function composeEmailHeader() {
+  console.log('ShellArgumentsStore', ShellArgumentsStore)
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { actionTime } = await ProjectInfoStore.setActionTime()
   const { developer, currentBranch } = await GitInfoStore.setCurrentBranch()

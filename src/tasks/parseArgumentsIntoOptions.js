@@ -21,15 +21,21 @@ function parseArgumentsIntoOptions(rawArgs) {
    * 2nd: the davai-commit bin folder
    * Parsing params:
    *  --commit-message [string]|false
+   *  --send-commit boolean
+   *  --send-email boolean
    */
   const args = arg({
-    '--commit-message': Boolean
+    '--commit-message': Boolean,
+    '--send-commit': Boolean,
+    '--send-email': Boolean
   }, { argv: rawArgs.slice(2) })
   /**
    * If the user did not specify either of the params
    * he will be asked to do so in the cli-view
    */
   ShellArgumentsStore.setCommitMessage(args._[0] || false)
+  ShellArgumentsStore.setSendCommit(args._[1] || false)
+  ShellArgumentsStore.setSendEmail(args._[2] || false)
   ShellArgumentsStore.setDirectory(process.cwd())
 
   return true

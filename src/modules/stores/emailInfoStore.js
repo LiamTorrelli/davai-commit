@@ -104,18 +104,13 @@ export const EmailInfoStore = observable({
 
     const fullDescription = `${commitHead}${commitBody}`
 
-    const BODY_CONTENT = `<h1 style="font-family: ${fontFamily}margin-bottom:5px;font-size:20px;">
-      <span style="color: ${colors.darkBlue};">
-        <b>Information:</b>
-      </span>
-    </h1>
+    const BODY_CONTENT = `☐ ... ☐ ☐ ... ☐ ☐ ... ☐ ☐ ... ☐ ☐ ... ☐ ☐ ... ☐
     <h2 style="font-family: ${fontFamily};;margin-bottom:10px;font-size:17px;">
       <b>
         ${developerName}
         <span style="color: ${colors.green};"> worked on the task</span> ${branch}
       </b>
     </h2>
-    <hr />
     <table
       style="border-collapse:collapse;border-spacing:0;table-layout: fixed; width: 650px" class="tg"
     >

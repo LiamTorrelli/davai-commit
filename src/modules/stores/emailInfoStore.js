@@ -20,14 +20,21 @@ export const EmailInfoStore = observable({
 
   setEmailHeader({
     projectName = null,
-    branch = null
+    branch = null,
+    actionTime = null
   }) {
-    if (!projectName || !branch) return logError(
+    if (!projectName || !branch || !actionTime) return logError(
       'Setting email header failed:',
-      'No projectName | branch'
+      'No projectName | branch | actionTime'
     )
-
-    this.HEADER_CONTENT = `¯\\_(ツ)_/¯¯ ${projectName.toString().toLowerCase()} ¯¯\\_ : ${branch}`
+    const {
+      day,
+      year,
+      time,
+      monthNumber
+    } = actionTime
+    const dateString = `${day}/${monthNumber}/${year} ${time}`
+    this.HEADER_CONTENT = `${dateString} ¯\\_(ツ)_/¯¯ ${projectName.toString().toLowerCase()} ¯¯\\_ : ${branch}`
 
     return this
   },
@@ -44,6 +51,7 @@ export const EmailInfoStore = observable({
     )
 
     const { day, month, time } = actionTime
+    const developerName = cleanUpFromN(developer)
 
     const dateString = `${month}/${day} ${time}`
 
@@ -97,13 +105,17 @@ export const EmailInfoStore = observable({
       text-align:left;
       vertical-align:middle;
     `
-    const commitDescription = commitMessage.head.includes('Automatic commit')
-      ? `${developer} worked on the task \n\n Automatically generated message... `
+    const commitHead = commitMessage.head.includes('Automatic commit')
+      ? ''
+      : commitMessage.head
+
+    const commitBody = commitMessage.head.includes('Automatic commit')
+      ? `${developerName} worked on the task \n\n Automatically generated message... `
       : commitMessage.body
 
     const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:5px;font-size:20px;">
       <b>
-        ${developer}
+        ${developerName}
         <span style="color: ${colors.green};"> worked on the task</span> ${branch}
       </b>
     </h1>
@@ -130,8 +142,8 @@ export const EmailInfoStore = observable({
         <td style="${tableDataStyles}"> ${dateString} </td>
         <td style="${tableDataStyles}"> ${branch} </td>
         <td style="${tableDataDescriptionStyles}">
-          <code><pre>${commitMessage.head}<br /></pre></code>
-          <code><pre>${commitDescription.split('-').join('').split('☐☐').join('☐ ... ☐')}<br /></pre></code>
+          <code><pre>${commitHead}<br /></pre></code>
+          <code><pre>${commitBody.split('-').join('').split('☐☐').join('☐ ... ☐')}<br /></pre></code>
         </td>
       </tr>
     </table>

@@ -25,7 +25,7 @@ const day = (timestamp, lang) => DAYS[lang][getDate(timestamp)]
  * @param {number | Date } timestamp - Date
  * @param {string} lang
  * @param {boolean} needFull
- * @return {{year: string, month: string, weekDay: string, day: string, time: string}}
+ * @return {{year: string, month: string, monthNumber: string, weekDay: string, day: string, time: string}}
  */
 
 class HumanDate {
@@ -47,6 +47,7 @@ class HumanDate {
     return {
       day: day(date, this.lang),
       month: month(date, this.lang, needFull),
+      monthNumber: getMonth(date),
       weekDay: weekDay(date, this.lang, needFull),
       year: getFullYear(date),
       time: timeString

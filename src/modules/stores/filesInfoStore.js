@@ -12,6 +12,7 @@ const CONFIG_FILE_PATH = 'DAVAI-CONFIG.json'
 
 export const FilesInfoStore = observable({
   PROJECT_NAME: [],
+  EMAIL_CONFIG: {},
   config: {},
   configFileExists: false,
 
@@ -43,11 +44,37 @@ export const FilesInfoStore = observable({
       return this
     }
     return logError('Setting project name failed:', 'There was a problem with a config file')
+  },
+
+  async setEmailCreds() {
+    const { config } = this.getConfigurationFile() || {}
+
+    if (!__isEmpty(config)) {
+      const { EMAIL_CONFIG } = config
+      const {
+        LOGIN,
+        PASS,
+        SERVICE,
+        SENDER_LIST
+      } = EMAIL_CONFIG
+
+      if (!LOGIN
+      || !PASS
+      || !SERVICE
+      || !SENDER_LIST
+      ) return logError('Setting email credentials failed:', 'Check EMAIL_CONFIG')
+
+      this.EMAIL_CONFIG = EMAIL_CONFIG
+
+      return this
+    }
+    return logError('Setting email credentials failed:', 'There was a problem with a config file')
   }
 
 }, {
   checkConfigFile: action,
-  setProjectName: action
+  setProjectName: action,
+  setEmailCreds: action
 })
 
 autorun(() => {

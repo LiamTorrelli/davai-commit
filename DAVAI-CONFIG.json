@@ -1,3 +1,9 @@
 {
-  "PROJECT_NAME": "DAVAI-COMMIT"
+  "PROJECT_NAME": "DAVAI-COMMIT",
+  "EMAIL_CONFIG": {
+    "LOGIN": "a.kazakov@incodewetrust.ru",
+    "PASS": "a.kazakov@incodewetrust.ru",
+    "SERVICE": "Yandex",
+    "SENDER_LIST": "a.kazakov@incodewetrust.ru"
+  }
 }

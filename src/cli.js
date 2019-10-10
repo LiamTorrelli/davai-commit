@@ -2,6 +2,7 @@
 import { parseArgumentsIntoOptions } from './tasks/parseArgumentsIntoOptions'
 import { promptForMissingOptions } from './tasks/promptForMissingOptions'
 import { startUpTasks } from './tasks/startUpTasks'
+import { sendEmailTasks } from './tasks/sendEmailTasks'
 import { submitChangesToGithub } from './tasks/submitChangesToGithub'
 
 // Handlers
@@ -19,7 +20,8 @@ export async function cli(args) {
     await parseArgumentsIntoOptions(args)
     await promptForMissingOptions()
     await startUpTasks()
-    await submitChangesToGithub()
+    // await submitChangesToGithub()
+    await sendEmailTasks()
 
     logFinish('Commit was sent')
     return logICWT()

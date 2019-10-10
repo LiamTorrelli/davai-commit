@@ -86,11 +86,15 @@ export const EmailInfoStore = observable({
       vertical-align:middle;
     `
 
-    const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:5px;font-size:18px;">
-      <b style="color: ${colors.green};">
-        ${developer} <span style="text-decoration: underline;">worked on the task <i>${branch}</i></span>
+    const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:5px;font-size:20px;">
+      <b>
+        ${developer}
+        <span style="text-decoration: underline;color: ${colors.green};">
+          worked on the task
+        </span> <i>${branch}</i>
       </b>
     </h1>
+    <hr />
     <h2 style="font-family: ${fontFamily};margin-bottom:10px;font-size:17px;">
       <span style="color: ${colors.darkBlue};">
         <b>Important information:</b>
@@ -115,7 +119,6 @@ export const EmailInfoStore = observable({
         <td style="${tableDataStyles}"> <code><pre>${commitMessage.head}<br /></pre></code> </td>
       </tr>
     </table>
-    <hr />
     <h3 style="font-family: ${fontFamily};margin-bottom:0px;font-size:16px;">
       <span style="color: ${colors.darkBlue};">
         <b>Commit message</b>

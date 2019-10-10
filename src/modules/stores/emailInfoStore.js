@@ -79,14 +79,19 @@ export const EmailInfoStore = observable({
       text-align:center;
     `
     const tableHeaderStyles = `${defaultTableCellStyles}font-weight:bold;`
-    const tableDataDescriptionStyles = `${defaultTableCellStyles}text-align:left;overflow-x:scroll;`
+    const tableDataDescriptionStyles = `
+      ${defaultTableCellStyles}
+      text-align:
+      ${commitMessage.head.includes('Automatic commit') ? 'center' : 'left'};
+      overflow-x:scroll;
+    `
 
     const commitHead = commitMessage.head.includes('Automatic commit')
       ? ''
       : `${commitMessage.head}\n`
 
     const commitBody = commitMessage.head.includes('Automatic commit')
-      ? `${developerName} worked on the task \n\nAutomatically generated message... `
+      ? `❍ ${developerName} worked on the task \n\nAutomatically generated message... `
       : commitMessage.body.split('-').join('').split('☐☐').join('☐ ... ☐')
 
     const fullDescription = `${commitHead}${commitBody}`

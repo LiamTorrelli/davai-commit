@@ -28,8 +28,8 @@ const tasks = {
     error: '# There was an error while Pushing commit'
   },
   composeEmailHeader: {
-    title: '# Composing Email header (theme)',
-    error: '# There was an error while Composing Email header (theme)'
+    title: '# Composing Email header (subject)',
+    error: '# There was an error while Composing Email header (subject)'
   },
   composeEmailBody: {
     title: '# Composing Email body content',

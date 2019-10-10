@@ -37,20 +37,26 @@ export const EmailInfoStore = observable({
     const developerName = cleanUpFromN(developer)
 
     const dateString = `${dayNumber}-${monthNumber}-${year} ${time}`
-    this.HEADER_CONTENT = `${dateString} ¯\\_(ツ)_/¯¯ ${projectName.toString().toLowerCase()} ¯¯\\_ : ${branch} : ${developerName}`
+    this.HEADER_CONTENT = `
+      ${dateString} ${developerName}
+      ¯\\_(ツ)_/¯¯
+      ${projectName.toString().toLowerCase()}
+      ¯¯\\_ : ${branch}
+    `
 
     return this
   },
 
   setEmailBody({
+    projectName = null,
     actionTime = null,
     developer = null,
     branch = null,
     commitMessage = null
   }) {
-    if (!actionTime || !developer || !branch || !commitMessage) return logError(
+    if (!actionTime || !developer || !branch || !commitMessage || !projectName) return logError(
       'Setting email header failed:',
-      'No actionTime | developer | branch | commitMessage'
+      'No actionTime | developer | branch | commitMessage | projectName'
     )
 
     const isAutomatic = commitMessage.head.includes('Automatic commit')
@@ -98,33 +104,36 @@ export const EmailInfoStore = observable({
 
     const fullDescription = `${commitHead}${commitBody}`
 
-    const BODY_CONTENT = `<h1 style="font-family: ${fontFamily};margin-bottom:5px;font-size:20px;">
+    const BODY_CONTENT = `<h1 style="font-family: ${fontFamily}margin-bottom:5px;font-size:20px;">
+      <span style="color: ${colors.darkBlue};">
+        <b>Information:</b>
+      </span>
+    </h1>
+    <h2 style="font-family: ${fontFamily};;margin-bottom:10px;font-size:17px;">
       <b>
         ${developerName}
         <span style="color: ${colors.green};"> worked on the task</span> ${branch}
       </b>
-    </h1>
-    <hr />
-    <h2 style="font-family: ${fontFamily};margin-bottom:10px;font-size:17px;">
-      <span style="color: ${colors.darkBlue};">
-        <b>Important information:</b>
-      </span>
     </h2>
+    <hr />
     <table
       style="border-collapse:collapse;border-spacing:0;table-layout: fixed; width: 650px" class="tg"
     >
       <colgroup>
         <col style="width: 130px">
           <col style="width: 140px">
-            <col style="width: 500px">
+            <col style="width: 140px">
+              <col style="width: 500px">
       </colgroup>
       <tr>
         <td style="${tableHeaderStyles}"> COMMIT TIME </td>
+        <td style="${tableHeaderStyles}"> PROJECT NAME </td>
         <td style="${tableHeaderStyles}"> TASK NAME </td>
         <td style="${tableHeaderStyles}"> COMMIT DESCRIPTION </td>
       </tr>
       <tr>
         <td style="${defaultTableCellStyles}"> ${dateString} </td>
+        <td style="${defaultTableCellStyles}"> ${projectName} </td>
         <td style="${defaultTableCellStyles}"> ${branch} </td>
         <td style="${tableDataDescriptionStyles}">
           <code><pre>${fullDescription}</pre></code>

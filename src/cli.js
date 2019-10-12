@@ -3,6 +3,7 @@ import { parseArgumentsIntoOptions } from './tasks/parseArgumentsIntoOptions'
 import { promptForMissingOptions } from './tasks/promptForMissingOptions'
 import { startUpTasks } from './tasks/startUpTasks'
 import { sendEmailTasks } from './tasks/sendEmailTasks'
+import { askForMoneyOrTime } from './tasks/askForMoneyOrTimeTasks'
 import { submitChangesToGithub } from './tasks/submitChangesToGithub'
 
 // Stores
@@ -27,7 +28,10 @@ export async function cli(args) {
     await startUpTasks()
 
     if (sendCommit) await submitChangesToGithub()
-    if (sendEmail) await sendEmailTasks()
+    if (sendEmail) {
+      await askForMoneyOrTime()
+      await sendEmailTasks()
+    }
 
     logFinish('All tasks were finished!')
     return logICWT()

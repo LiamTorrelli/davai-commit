@@ -42,6 +42,14 @@ const tasks = {
   sendEmail: {
     title: '# Sending email',
     error: '# There was an error while Sending email'
+  },
+  askForMoney: {
+    title: '# Asking, how much money it is worth',
+    error: '# There was an error while Asking, how much money it is worth'
+  },
+  askForTime: {
+    title: '# Asking, how much time the developer spent',
+    error: '# There was an error while Asking, how much time the developer spent'
   }
 }
 

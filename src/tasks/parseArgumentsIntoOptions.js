@@ -1,7 +1,7 @@
 import arg from 'arg'
 
 // Stores
-import { ShellArgumentsStore } from '../modules/index'
+import { ShellArgumentsStore, FilesInfoStore } from '../modules/index'
 
 /**
  * Parsing arguments that the user sends in the console
@@ -11,7 +11,7 @@ import { ShellArgumentsStore } from '../modules/index'
  *
  * @return {Boolean}
  */
-function parseArgumentsIntoOptions(rawArgs) {
+async function parseArgumentsIntoOptions(rawArgs) {
   // TODO: set the option to:
   //  - version
   //  - mode [?]
@@ -24,6 +24,13 @@ function parseArgumentsIntoOptions(rawArgs) {
    *  --send-commit boolean
    *  --send-email boolean
    */
+  // First, let's check for default params, such as SEND_EMAIL and SEND COMMIT
+
+  const {
+    SEND_EMAIL,
+    SEND_COMMIT
+  } = await FilesInfoStore.checkDefaultParams()
+
   const args = arg({
     '--commit-message': Boolean,
     '--send-commit': Boolean,
@@ -33,9 +40,17 @@ function parseArgumentsIntoOptions(rawArgs) {
    * If the user did not specify either of the params
    * he will be asked to do so in the cli-view
    */
-  ShellArgumentsStore.setCommitMessage(args._[0] || false)
-  ShellArgumentsStore.setSendCommit(args._[1] || false)
-  ShellArgumentsStore.setSendEmail(args._[2] || false)
+  ShellArgumentsStore.setCommitMessage(args._[0] || null)
+  if (SEND_EMAIL === null) {
+    ShellArgumentsStore.setSendEmail(args._[2] || null)
+  } else {
+    ShellArgumentsStore.setSendEmail(SEND_EMAIL)
+  }
+  if (SEND_COMMIT === null) {
+    ShellArgumentsStore.setSendCommit(args._[1] || null)
+  } else {
+    ShellArgumentsStore.setSendCommit(SEND_COMMIT)
+  }
   ShellArgumentsStore.setDirectory(process.cwd())
 
   return true

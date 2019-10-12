@@ -37,6 +37,14 @@
 ## Example DAVAI-CONFIG.json
 ```json
 {
-  "PROJECT_NAME": "DAVAI-COMMIT"
+  "PROJECT_NAME": "DAVAI-COMMIT",
+  "SEND_EMAIL": false,
+  "SEND_COMMIT": false,
+  "EMAIL_CONFIG": {
+    "LOGIN": "YANDEX EMAIL",
+    "PASS": "PASSWORD",
+    "SERVICE": "Yandex",
+    "SENDER_LIST": "email-1,email-2"
+  }
 }
 ```

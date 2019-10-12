@@ -46,6 +46,23 @@ export const FilesInfoStore = observable({
     return logError('Setting project name failed:', 'There was a problem with a config file')
   },
 
+  async checkDefaultParams() {
+    const { config } = this.getConfigurationFile() || {}
+
+    if (!__isEmpty(config)) {
+      const {
+        SEND_EMAIL = null,
+        SEND_COMMIT = null
+      } = config
+
+      this.SEND_EMAIL = SEND_EMAIL
+      this.SEND_COMMIT = SEND_COMMIT
+
+      return this
+    }
+    return logError('Setting project name failed:', 'There was a problem with a config file')
+  },
+
   async setEmailCreds() {
     const { config } = this.getConfigurationFile() || {}
 
@@ -74,7 +91,8 @@ export const FilesInfoStore = observable({
 }, {
   checkConfigFile: action,
   setProjectName: action,
-  setEmailCreds: action
+  setEmailCreds: action,
+  checkDefaultParams: action
 })
 
 autorun(() => {

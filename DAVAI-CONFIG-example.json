@@ -1,5 +1,7 @@
 {
   "PROJECT_NAME": "DAVAI-COMMIT",
+  "SEND_EMAIL": false,
+  "SEND_COMMIT": false,
   "EMAIL_CONFIG": {
     "LOGIN": "YANDEX EMAIL",
     "PASS": "PASSWORD",

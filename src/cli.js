@@ -22,8 +22,10 @@ export async function cli(args) {
   try {
     await parseArgumentsIntoOptions(args)
     await promptForMissingOptions()
-    await startUpTasks()
     const { sendCommit, sendEmail } = ShellArgumentsStore
+
+    await startUpTasks()
+
     if (sendCommit) await submitChangesToGithub()
     if (sendEmail) await sendEmailTasks()
 

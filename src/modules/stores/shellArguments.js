@@ -5,9 +5,10 @@ import { logAutorun, logStoreValues } from '../../handlers/outputHandler'
 
 export const ShellArgumentsStore = observable({
   directory: null,
-  commitMsg: null,
   sendCommit: false,
+  commitMsg: null,
   sendEmail: false,
+  emailMsg: null,
   actionType: null,
   taskName: null,
   pagePath: null,
@@ -26,18 +27,23 @@ export const ShellArgumentsStore = observable({
 
     return this
   },
-  setCommitMessage(commitMsg) {
-    this.commitMsg = commitMsg
-
-    return this
-  },
   setSendCommit(needToSend) {
     this.sendCommit = needToSend
 
     return this
   },
+  setCommitMessage(commitMsg) {
+    this.commitMsg = commitMsg
+
+    return this
+  },
   setSendEmail(needToSend) {
     this.sendEmail = needToSend
+
+    return this
+  },
+  setEmailMessage(emailMsg) {
+    this.emailMsg = emailMsg
 
     return this
   },
@@ -72,6 +78,7 @@ export const ShellArgumentsStore = observable({
   setCommitMessage: action,
   setSendCommit: action,
   setSendEmail: action,
+  setEmailMessage: action,
   setDescription: action,
   setActionType: action,
   setTaskName: action,

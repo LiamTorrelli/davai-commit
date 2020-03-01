@@ -25,17 +25,19 @@ function parseArgumentsIntoOptions(rawArgs) {
    *  --send-email boolean
    */
   const args = arg({
-    '--commit-message': Boolean,
     '--send-commit': Boolean,
-    '--send-email': Boolean
+    '--commit-message': Boolean,
+    '--send-email': Boolean,
+    '--email-message': Boolean
   }, { argv: rawArgs.slice(2) })
   /**
    * If the user did not specify either of the params
    * he will be asked to do so in the cli-view
    */
-  ShellArgumentsStore.setCommitMessage(args._[0] || false)
-  ShellArgumentsStore.setSendCommit(args._[1] || false)
+  ShellArgumentsStore.setSendCommit(args._[0] || false)
+  ShellArgumentsStore.setCommitMessage(args._[1] || false)
   ShellArgumentsStore.setSendEmail(args._[2] || false)
+  ShellArgumentsStore.setEmailMessage(args._[3] || false)
   ShellArgumentsStore.setDirectory(process.cwd())
 
   return true

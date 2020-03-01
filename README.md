@@ -33,6 +33,7 @@
 ## Description
 - `davai-commit`
   > Creates a commit
+  > Sends an email
 
 ## Example DAVAI-CONFIG.json
 ```json

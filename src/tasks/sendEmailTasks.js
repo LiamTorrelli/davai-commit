@@ -51,6 +51,7 @@ async function composeEmailBody() {
     actionTime,
     developer
   })
+  debugger
 
   return BODY_CONTENT
 }

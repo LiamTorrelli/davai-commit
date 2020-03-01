@@ -47,11 +47,10 @@ async function composeEmailBody() {
   const { BODY_CONTENT } = EmailInfoStore.setEmailBody({
     branch: currentBranch,
     projectName: PROJECT_NAME,
-    emailMessage: commitMessage || emailMsg,
+    emailMessage: emailMsg,
     actionTime,
     developer
   })
-  debugger
 
   return BODY_CONTENT
 }

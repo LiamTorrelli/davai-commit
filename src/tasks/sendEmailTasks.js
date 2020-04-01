@@ -44,6 +44,7 @@ async function composeEmailBody() {
   const { emailMsg } = await ShellArgumentsStore
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { developer, currentBranch, commitMessage } = await GitInfoStore
+  debugger
   const { BODY_CONTENT } = EmailInfoStore.setEmailBody({
     branch: currentBranch,
     projectName: PROJECT_NAME,
@@ -117,10 +118,8 @@ async function sendEmail() {
 }
 
 /**
- * These are startUp tasks. What is happening here?
- ** - blabla task ->
- *  - blablalba
- *  - blablalba
+ * These are send-email tasks. What is happening here?
+ ** - task... ->
  */
 export async function sendEmailTasks() {
   logInfo('Send email tasks')

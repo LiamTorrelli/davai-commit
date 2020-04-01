@@ -1,5 +1,6 @@
 /* eslint-disable no-unexpected-multiline */
 /* eslint-disable template-tag-spacing */
+
 import { observable, action, autorun } from 'mobx'
 import { mapObjIndexed } from 'ramda'
 
@@ -11,7 +12,7 @@ import { HumanDate } from '../../helpers/humanTimestamp'
 import { EmailService } from '../../services/emailService'
 
 // Handlers
-import { logError, logAutorun, logStoreValues } from '../../handlers/outputHandler'
+import { logError } from '../../handlers/outputHandler'
 
 export const EmailInfoStore = observable({
   HEADER_CONTENT: null,

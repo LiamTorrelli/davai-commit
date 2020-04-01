@@ -1,8 +1,8 @@
 # DAVAI-COMMIT
 
 ## VERSIONS
- - DEVELOPMENT RELEASE 1.2.0
- - PRODUCTION RELEASE 1.2.0
+ - DEVELOPMENT RELEASE 1.3.1
+ - PRODUCTION RELEASE 1.3.1
 
 ## First installation
 
@@ -40,4 +40,8 @@
 {
   "PROJECT_NAME": "DAVAI-COMMIT"
 }
+```
+## Debug
+```
+  node --inspect --experimental-modules bin/davai-commit
 ```

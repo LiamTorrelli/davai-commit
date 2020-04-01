@@ -1,7 +1,9 @@
+// @ts-check
+
 import { observable, action, autorun } from 'mobx'
 
 // Handlers
-import { logError, logAutorun, logStoreValues } from '../../handlers/outputHandler'
+import { logError } from '../../handlers/outputHandler'
 import { FilesService } from '../../services/filesService'
 
 // Helpers
@@ -27,7 +29,7 @@ export const FilesInfoStore = observable({
   },
 
   async checkConfigFile() {
-    const { config } = this.getConfigurationFile() || {}
+    const { config = '' } = this.getConfigurationFile() || {}
 
     this.configFileExists = !__isEmpty(config)
 
@@ -35,7 +37,7 @@ export const FilesInfoStore = observable({
   },
 
   async setProjectName() {
-    const { config } = this.getConfigurationFile() || {}
+    const { config = '' } = this.getConfigurationFile() || {}
 
     if (!__isEmpty(config)) {
       const { PROJECT_NAME } = config
@@ -47,7 +49,7 @@ export const FilesInfoStore = observable({
   },
 
   async setEmailCreds() {
-    const { config } = this.getConfigurationFile() || {}
+    const { config = '' } = this.getConfigurationFile() || {}
 
     if (!__isEmpty(config)) {
       const { EMAIL_CONFIG } = config

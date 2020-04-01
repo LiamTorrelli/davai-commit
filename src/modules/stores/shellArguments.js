@@ -1,3 +1,5 @@
+// @ts-check
+
 import { observable, action, autorun } from 'mobx'
 
 // Handlers
@@ -5,6 +7,7 @@ import { logAutorun, logStoreValues } from '../../handlers/outputHandler'
 
 export const ShellArgumentsStore = observable({
   directory: null,
+  cliMode: null,
   sendCommit: false,
   commitMsg: null,
   sendEmail: false,
@@ -24,6 +27,11 @@ export const ShellArgumentsStore = observable({
   },
   setActionType(actionType) {
     this.actionType = actionType
+
+    return this
+  },
+  setCliMode(cliMode) {
+    this.cliMode = cliMode // start|break|finish
 
     return this
   },
@@ -75,6 +83,7 @@ export const ShellArgumentsStore = observable({
 
 }, {
   setDirectory: action,
+  setCliMode: action,
   setCommitMessage: action,
   setSendCommit: action,
   setSendEmail: action,

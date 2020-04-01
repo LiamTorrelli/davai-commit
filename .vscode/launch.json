@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "name": "Debug app",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/davai-commit",
+      "runtimeArgs": ["--inspect", "--experimental-modules"],
+      "args": ["-s"]
+    }
+  ]
+}

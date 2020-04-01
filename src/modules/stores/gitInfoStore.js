@@ -1,3 +1,4 @@
+// @ts-check
 // Libs
 import { observable, action, autorun } from 'mobx'
 
@@ -58,3 +59,5 @@ autorun(() => {
   // logAutorun('Git Info')
   // logStoreValues(GitInfoStore, 'GitInfoStore')
 })
+// latest hash git rev-parse HEAD
+// git log --format=%s -n 1 54be6ecc78d85804d804ae2c42dd9e5b1a5e2ae5

@@ -19,6 +19,8 @@ import {
 } from './handlers/outputHandler'
 
 export async function cli(args) {
+  console.log('VERSION', '1.3.2')
+  console.log(' ')
   try {
     await parseArgumentsIntoOptions(args)
     await promptForMissingOptions()

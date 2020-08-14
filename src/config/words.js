@@ -28,7 +28,7 @@ const tasks = {
     error: '# There was an error while Pushing commit'
   },
   sendToApi: {
-    title: ' ¯/\'_(ツ)_/¯¯ You are awesome!',
+    title: ' ¯\\_(ツ)_/¯¯ You are awesome!',
     error: ''
   }
 }

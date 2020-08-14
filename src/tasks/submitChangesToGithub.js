@@ -12,7 +12,9 @@ import { taskHandler } from '../handlers/taskHandler'
 import {
   GitInfoStore,
   ProjectInfoStore,
-  ShellArgumentsStore
+  ShellArgumentsStore,
+  FilesInfoStore,
+  SendRequestToApiStore
 } from '../modules/index'
 
 async function stageFiles() {
@@ -23,7 +25,7 @@ async function stageFiles() {
 async function createCommitMsg() {
   const { commitMsg } = ShellArgumentsStore
   const { currentBranch } = await GitInfoStore.setCurrentBranch()
-  // await GitInfoStore.setStatusedFiles()
+
   const { actionTime } = ProjectInfoStore
 
   const { commitMessage } = await GitInfoStore
@@ -52,6 +54,27 @@ async function pushCommit() {
   } catch (err) { console.warn('failed:', err); return false }
 }
 
+async function sendToApi() {
+  const { commitMsg, commitDate, commitDateString } = ShellArgumentsStore
+  const { currentBranch, developer } = await GitInfoStore.setCurrentBranch()
+  const { PROJECT_NAME } = await FilesInfoStore
+
+  try {
+    await SendRequestToApiStore
+      .sendCommitInfo({
+        projectName: PROJECT_NAME,
+        branch: currentBranch,
+        commitSource: 'davaicommit',
+        developer,
+        commitDate,
+        commitDateString,
+        commitMsg
+      })
+
+    return true
+  } catch (err) { console.warn('failed:', err); return false }
+}
+
 export async function submitChangesToGithub() {
   logInfo('Submit changes to github')
 
@@ -67,6 +90,10 @@ export async function submitChangesToGithub() {
     { /*  ** pushCommit **  */
       task: () => taskHandler('pushCommit', pushCommit),
       title: tasks['pushCommit'].title
+    },
+    { /*  ** sendToApi **  */
+      task: () => taskHandler('sendToApi', sendToApi),
+      title: tasks['sendToApi'].title
     }
   ])
 

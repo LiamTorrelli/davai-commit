@@ -15,9 +15,6 @@ import {
   GIT_M_OTHER
 } from './gitInfoSubModules/index'
 
-// Handlers
-import { logAutorun } from '../../handlers/outputHandler'
-
 export const GitInfoStore = observable({
   developer: null,
   currentBranch: null,
@@ -55,9 +52,5 @@ export const GitInfoStore = observable({
   pullBranch: action
 })
 
-autorun(() => {
-  // logAutorun('Git Info')
-  // logStoreValues(GitInfoStore, 'GitInfoStore')
-})
 // latest hash git rev-parse HEAD
 // git log --format=%s -n 1 54be6ecc78d85804d804ae2c42dd9e5b1a5e2ae5

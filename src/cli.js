@@ -2,11 +2,7 @@
 import { parseArgumentsIntoOptions } from './tasks/parseArgumentsIntoOptions'
 import { promptForMissingOptions } from './tasks/promptForMissingOptions'
 import { startUpTasks } from './tasks/startUpTasks'
-import { sendEmailTasks } from './tasks/sendEmailTasks'
 import { submitChangesToGithub } from './tasks/submitChangesToGithub'
-
-// Stores
-import { ShellArgumentsStore } from './modules/index'
 
 // Handlers
 import {

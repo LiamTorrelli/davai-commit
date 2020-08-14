@@ -4,7 +4,7 @@ import shell from 'shelljs'
 export const GIT_S_OTHER = {
 
   getGitStatus() {
-    const output = shell.exec('git status -s -u')
+    const output = shell.exec('git status -s -u', { silent: true })
     const { stdout, stderr, code } = output
 
     return {

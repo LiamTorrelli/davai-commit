@@ -15,7 +15,7 @@ export const GIT_S_OTHER = {
   },
 
   getGitUserName() {
-    const output = shell.exec('git config user.name')
+    const output = shell.exec('git config user.name', { silent: true })
     const { stdout, stderr, code } = output
 
     return {

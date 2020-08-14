@@ -4,7 +4,7 @@ import shell from 'shelljs'
 export const GIT_S_BRANCHING = {
 
   async getCurrentBranch() {
-    const output = shell.exec('git symbolic-ref --short HEAD')
+    const output = shell.exec('git symbolic-ref --short HEAD', { silent: true })
     const { stdout, stderr, code } = output
 
     return {

@@ -6,7 +6,7 @@ export const GIT_S_PUSHING = {
   async pushCommit({ branchName }) {
     if (!branchName) throw new Error('Handling Pushing Commit failed, no branch name found')
 
-    const output = shell.exec(`git push --set-upstream origin ${branchName}`)
+    const output = shell.exec(`git push --set-upstream origin ${branchName}`, { silent: true })
     const { stdout, stderr, code } = output
 
     return {
@@ -19,7 +19,7 @@ export const GIT_S_PUSHING = {
   async pushAfterMerge({ branchName }) {
     if (!branchName) throw new Error('Handling Pushing Commit failed, no branch name found')
 
-    const output = shell.exec(`git push --set-upstream origin ${branchName}`)
+    const output = shell.exec(`git push --set-upstream origin ${branchName}`, { silent: true })
     const { stdout, stderr, code } = output
 
     return {

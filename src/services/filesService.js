@@ -8,7 +8,7 @@ import { __isEmpty } from '../helpers/help'
 
 export class FilesService {
   async getProjectName() {
-    const output = shell.exec('basename "$PWD"')
+    const output = shell.exec('basename "$PWD"', { silent: true })
     const { stdout, stderr, code } = output
 
     return {

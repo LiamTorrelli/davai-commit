@@ -26,7 +26,7 @@ export const GIT_S_OTHER = {
   },
 
   fetchHistory() {
-    const output = shell.exec('git fetch --all')
+    const output = shell.exec('git fetch --all', { silent: true })
     const { stdout, stderr, code } = output
 
     return {

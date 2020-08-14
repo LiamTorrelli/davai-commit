@@ -94,15 +94,15 @@ export const GIT_M_COMMITTING = {
     head += `❍ Automatic commit by: ${cleanUpFromN(developer)}`
 
     if (filesWithStatus.length) {
-      body += `${divider}\n`
+      body += `${divider}\r\n`
 
       for (let i = 0; i < filesWithStatus.length; i += 1) {
         body += `${filesWithStatus[i].status}`.padStart(maxLengthStatus + 2)
-        body += `:  ${filesWithStatus[i].fileName}\n`
+        body += `:  ${filesWithStatus[i].fileName}\r\n`
       }
 
-      body += `${divider}\n`
-    } else body += 'Empty commit body. Probably merging smth.\n'
+      body += `${divider}\r\n`
+    } else body += 'Empty commit body. Probably merging smth.\r\n'
 
     body += `Generated: ${dateString}`
 
@@ -143,9 +143,9 @@ export const GIT_M_COMMITTING = {
 
     head += `❍ ${cleanUpFromN(commitMsg)} ❍`
 
-    body += `${cleanUpFromN(divider)}\n`
-    body += `${cleanUpFromN(developerLine)}\n`
-    body += `${cleanUpFromN(dateLine)}\n`
+    body += `${cleanUpFromN(divider)}\r\n`
+    body += `${cleanUpFromN(developerLine)}\r\n`
+    body += `${cleanUpFromN(dateLine)}\r\n`
     body += `${cleanUpFromN(divider)}`
 
     this.commitMessage = { head, body }

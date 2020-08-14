@@ -143,10 +143,10 @@ export const GIT_M_COMMITTING = {
 
     head += `❍ ${cleanUpFromN(commitMsg)} ❍`
 
-    body += `${divider}\n`
-    body += `${developerLine}\n`
-    body += `${dateLine}\n`
-    body += `${divider}`
+    body += `${cleanUpFromN(divider)}\n`
+    body += `${cleanUpFromN(developerLine)}\n`
+    body += `${cleanUpFromN(dateLine)}\n`
+    body += `${cleanUpFromN(divider)}`
 
     this.commitMessage = { head, body }
 

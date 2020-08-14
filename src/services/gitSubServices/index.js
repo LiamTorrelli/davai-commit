@@ -7,6 +7,7 @@ import { GIT_S_PULLING } from './pullingSubServices'
 import { GIT_S_TAGGING } from './taggingSubServices'
 import { GIT_S_SETTING } from './settingSubServices'
 import { GIT_S_OTHER } from './otherSubServices'
+import { GIT_S_STANDUPING } from './standupingSubServices'
 
 export {
   GIT_S_BRANCHING,
@@ -17,5 +18,6 @@ export {
   GIT_S_PULLING,
   GIT_S_TAGGING,
   GIT_S_SETTING,
-  GIT_S_OTHER
+  GIT_S_OTHER,
+  GIT_S_STANDUPING
 }

@@ -7,9 +7,11 @@ import { GIT_M_TAGGING } from './taggingSubModules'
 import { GIT_M_MERGING } from './mergingSubModules'
 import { GIT_M_PULLING } from './pullingSubModules'
 import { GIT_M_OTHER } from './otherSubModules'
+import { GIT_M_STANDUPING } from './standupingModule'
 
 export {
   GIT_M_SETTING,
+  GIT_M_STANDUPING,
   GIT_M_COMMITTING,
   GIT_M_BRANCHING,
   GIT_M_STAGING,

@@ -5,6 +5,8 @@ export const ShellArgumentsStore = observable({
   commitMsg: null,
   commitDate: null,
   commitDateString: null,
+  isStandup: false,
+  standupAmount: 0,
 
   setDirectory(dir) {
     this.directory = dir
@@ -28,11 +30,25 @@ export const ShellArgumentsStore = observable({
     this.commitDateString = commitDateString
 
     return this
+  },
+
+  setIsStandup(isStandup) {
+    this.isStandup = isStandup
+
+    return this
+  },
+
+  setStandupNumber(standupAmount) {
+    this.standupAmount = standupAmount
+
+    return this
   }
 
 }, {
   setDirectory: action,
   setCommitMessage: action,
   setCommitDate: action,
-  setCommitDateString: action
+  setCommitDateString: action,
+  setIsStandup: action,
+  setStandupNumber: action
 })

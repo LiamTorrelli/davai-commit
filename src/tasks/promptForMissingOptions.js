@@ -7,7 +7,9 @@ async function promptForMissingOptions() {
   const commitQuestionMessage = []
   let commitMessageConfirmation = {}
 
-  const { commitMsg } = ShellArgumentsStore
+  const { commitMsg, isStandup } = ShellArgumentsStore
+
+  if (isStandup) return true
 
   if (!commitMsg) {
     commitQuestionMessage.push({

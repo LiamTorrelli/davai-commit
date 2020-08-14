@@ -30,6 +30,10 @@ const tasks = {
   sendToApi: {
     title: ' ¯\\_(ツ)_/¯¯ You are awesome!',
     error: ''
+  },
+  logStandupInfo: {
+    title: ' ¯\\_(ツ)_/¯¯ That is it. Keep calm and keep coding!',
+    error: ''
   }
 }
 

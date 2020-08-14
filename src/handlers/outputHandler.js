@@ -23,7 +23,7 @@ const logICWT = () => {
   console.log('\n')
 }
 
-const logFinish = (msg = '') => {
+const logFinish = (msg = '', spaceBefore = true, spaceAfter = false ) => {
   const emptySpacingCount = msg.length / 4
   let emptySpaces = ''
   let emptySpacesPart = ''
@@ -31,10 +31,11 @@ const logFinish = (msg = '') => {
   for (let i = 0; i <= msg.length + emptySpacingCount; i += 1) emptySpaces += '_'
   for (let i = 0; i <= emptySpacingCount / 2; i += 1) emptySpacesPart += ' '
 
-  console.log('\n')
+  if (spaceBefore) console.log('\n')
   console.log(chalk.green(emptySpaces), '\n')
   console.log(chalk.green.bold(`${emptySpacesPart}${msg}${emptySpacesPart}`))
   console.log(chalk.green(emptySpaces))
+  if (spaceAfter) console.log('\n')
 }
 
 const logAutorun = (msg = '') => {

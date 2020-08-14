@@ -8,7 +8,8 @@ import {
   GIT_S_PULLING,
   GIT_S_TAGGING,
   GIT_S_SETTING,
-  GIT_S_OTHER
+  GIT_S_OTHER,
+  GIT_S_STANDUPING
 } from './gitSubServices'
 
 export class GitService {
@@ -25,4 +26,5 @@ export class GitService {
   getGitStatus() { return GIT_S_OTHER.getGitStatus() }
   getGitUserName() { return GIT_S_OTHER.getGitUserName() }
   fetchHistory() { return GIT_S_OTHER.fetchHistory() }
+  getStandupInfo(args) { return GIT_S_STANDUPING.getStandupInfo(args) }
 }

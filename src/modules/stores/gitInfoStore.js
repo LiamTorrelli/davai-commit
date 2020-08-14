@@ -4,6 +4,7 @@ import { observable, action, autorun } from 'mobx'
 
 // Sub modules
 import {
+  GIT_M_STANDUPING,
   GIT_M_SETTING,
   GIT_M_COMMITTING,
   GIT_M_BRANCHING,
@@ -30,6 +31,7 @@ export const GitInfoStore = observable({
   tagPushStatus: '',
   filesAreStaged: false,
 
+  ...GIT_M_STANDUPING,
   ...GIT_M_SETTING,
   ...GIT_M_COMMITTING,
   ...GIT_M_BRANCHING,
@@ -49,7 +51,8 @@ export const GitInfoStore = observable({
   createTag: action,
   mergeBranch: action,
   stageFiles: action,
-  pullBranch: action
+  pullBranch: action,
+  getStandup: action
 })
 
 // latest hash git rev-parse HEAD

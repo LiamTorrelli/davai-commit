@@ -7,7 +7,7 @@ export const GIT_S_STAGING = {
     // TODO: abilty to choose files to add to commit
     const action = allFiles ? 'add .' : 'add .'
 
-    const output = shell.exec(`git ${action}`)
+    const output = shell.exec(`git ${action}`, { silent: true })
     const { stdout, stderr, code } = output
 
     return {

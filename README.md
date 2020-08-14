@@ -1,21 +1,8 @@
 # DAVAI-COMMIT
 
 ## VERSIONS
- - DEVELOPMENT RELEASE 1.3.1
- - PRODUCTION RELEASE 1.3.1
-
-## First installation
-
-### Set up git project
-```shell
-  mkdir davai-commit && cd davai-commit
-  git init
-  git remote add origin git@github.com:LiamTorrelli/davai-commit.git
-  ... do changes
-
-  git push -u origin [ branch ]
-
-```
+ - DEVELOPMENT RELEASE 2.0.0
+ - PRODUCTION RELEASE 2.0.0
 
 ### Set the project in the npm
 1) Mac [ sudo ], Windows [ need permissions ]
@@ -30,16 +17,17 @@
 ```shell
   davai-commit
 ```
+
+```shell
+  davai-commit -s 10
+```
+
 ## Description
 - `davai-commit`
   > Creates a commit
-  > Sends an email
+- `davai-commit -s 10`
+  > Prints the last 10 commits
 
-## Example DAVAI-CONFIG.json
-```json
-{
-  "PROJECT_NAME": "DAVAI-COMMIT"
-}
 ```
 ## Debug
 ```

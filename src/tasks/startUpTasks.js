@@ -19,9 +19,10 @@ import {
 } from '../modules/index'
 
 // Functions
-async function checkIfFilesExist() {
-  const { configFileExists } = await FilesInfoStore.checkConfigFile()
-  return configFileExists
+async function setDeveloper() {
+  await GitInfoStore.setDeveloper()
+
+  return true
 }
 
 async function setStatusedFiles() {
@@ -30,14 +31,9 @@ async function setStatusedFiles() {
   return true
 }
 
-async function setDeveloper() {
-  await GitInfoStore.setDeveloper()
-
-  return true
-}
-
 async function setProjectInfo() {
   const { actionTime } = ProjectInfoStore.setActionTime()
+
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
 
   return !__isEmpty(actionTime) && !__isEmpty(PROJECT_NAME)
@@ -45,18 +41,14 @@ async function setProjectInfo() {
 
 /**
  * These are startUp tasks. What is happening here?
- ** - blabla task ->
- *  - blablalba
- *  - blablalba
+ *  - setDeveloper -> setting the developer (using git)
+ *  - setStatusedFiles -> setting the changed files (using git)
+ *  - setProjectInfo -> setting the project name (using bash)
  */
 export async function startUpTasks() {
   logInfo('Start up tasks')
 
   const tasksToRun = new Listr([
-    { /*  ** checkIfFilesExist **  */
-      task: () => taskHandler('checkIfFilesExist', checkIfFilesExist),
-      title: tasks['checkIfFilesExist'].title
-    },
     { /*  ** setDeveloper **  */
       task: () => taskHandler('setDeveloper', setDeveloper),
       title: tasks['setDeveloper'].title

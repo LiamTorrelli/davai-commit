@@ -13,21 +13,17 @@ import {
   logError,
   logFinish,
   logICWT,
-  logSuccess,
-  _Errors,
-  logStoreValues
+  _Errors
 } from './handlers/outputHandler'
 
 export async function cli(args) {
-  console.log('VERSION', '1.3.2')
+  console.log('VERSION', '2.0.0')
   console.log(' ')
   try {
     await parseArgumentsIntoOptions(args)
     await promptForMissingOptions()
     await startUpTasks()
-    const { sendCommit, sendEmail } = ShellArgumentsStore
-    if (sendCommit) await submitChangesToGithub()
-    if (sendEmail) await sendEmailTasks()
+    await submitChangesToGithub()
 
     logFinish('All tasks were finished!')
     return logICWT()

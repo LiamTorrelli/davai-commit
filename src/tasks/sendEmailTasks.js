@@ -44,7 +44,7 @@ async function composeEmailBody() {
   const { emailMsg } = await ShellArgumentsStore
   const { PROJECT_NAME } = await FilesInfoStore.setProjectName()
   const { developer, currentBranch, commitMessage } = await GitInfoStore
-  debugger
+
   const { BODY_CONTENT } = EmailInfoStore.setEmailBody({
     branch: currentBranch,
     projectName: PROJECT_NAME,
@@ -61,60 +61,6 @@ async function composeEmailFooter() {
   const { FOOTER_CONTENT } = await EmailInfoStore.setEmailFooter({ actionTime })
 
   return FOOTER_CONTENT
-}
-
-async function sendEmail() {
-  const { EMAIL_CONFIG } = await FilesInfoStore.setEmailCreds()
-  if (!EMAIL_CONFIG) {
-    logError('Cannot send email', 'NO EMAIL CONFIG')
-    return false
-  }
-  const { HEADER_CONTENT, BODY_CONTENT, FOOTER_CONTENT } = await EmailInfoStore
-
-  if (!HEADER_CONTENT || !BODY_CONTENT || !FOOTER_CONTENT) {
-    logError('Cannot send email', 'Composed email not correctly')
-    return false
-  }
-
-  const {
-    LOGIN,
-    PASS,
-    SERVICE,
-    SENDER_LIST
-  } = EMAIL_CONFIG
-
-  const transporter = await nodemailer.createTransport({
-    service: SERVICE,
-    auth: {
-      user: LOGIN,
-      pass: PASS
-    }
-  })
-  const { developer } = await GitInfoStore
-
-  const mailOptions = {
-    from: `${developer} <${LOGIN}>`,
-    to: `${SENDER_LIST}`,
-    subject: `${HEADER_CONTENT}`,
-    html: `
-    ${BODY_CONTENT}
-    ${FOOTER_CONTENT}
-    `
-  };
-
-  const sendTheEmail = () => new Promise((res, rej) => {
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error)
-        rej(false)
-      } else {
-        console.log(`Email sent: ${info.response}`)
-        res(true)
-      }
-    })
-  })
-
-  return sendTheEmail()
 }
 
 /**
@@ -136,10 +82,6 @@ export async function sendEmailTasks() {
     { /*  ** composeEmailFooter **  */
       task: () => taskHandler('composeEmailFooter', composeEmailFooter),
       title: tasks['composeEmailFooter'].title
-    },
-    { /*  ** sendEmail **  */
-      task: () => taskHandler('sendEmail', sendEmail),
-      title: tasks['sendEmail'].title
     }
   ])
 

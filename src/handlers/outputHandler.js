@@ -18,7 +18,7 @@ const logICWT = () => {
   console.log(chalk.bold.underline.cyan('    |  |     |  |         \\  \\    /  \\    /  /         |  |'))
   console.log(chalk.bold.underline.cyan('    |  |     |  |          \\  \\  /    \\  /  /          |  |'))
   console.log(chalk.bold.underline.blue('    |  |     |  |           \\  \\/  /\\  \\/  /           |  |'))
-  console.log(chalk.bold.underline.blue(' ___|  |___  |  |_________   \\    /  \\    /            |  |'))
+  console.log(chalk.bold.underline.magenta(' ___|  |___  |  |_________   \\    /  \\    /            |  |'))
   console.log(chalk.bold.underline.magenta('|__________| |____________|   \\__/    \\__/             |__|'))
   console.log('\n')
 }

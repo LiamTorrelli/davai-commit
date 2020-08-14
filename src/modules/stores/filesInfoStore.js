@@ -1,85 +1,31 @@
-// @ts-check
-
-import { observable, action, autorun } from 'mobx'
+// Libs
+import { observable, action } from 'mobx'
 
 // Handlers
 import { logError } from '../../handlers/outputHandler'
 import { FilesService } from '../../services/filesService'
 
-// Helpers
-import { __isEmpty } from '../../helpers/help'
-
-// TODO: move this to the global config
-const CONFIG_FILE_PATH = 'DAVAI-CONFIG.json'
-
 export const FilesInfoStore = observable({
   PROJECT_NAME: [],
-  EMAIL_CONFIG: {},
-  config: {},
-  configFileExists: false,
-
-  getConfigurationFile() {
-    try {
-      this.config = new FilesService()
-        .setFilePath(CONFIG_FILE_PATH)
-        .parsedJson
-
-      return this
-    } catch (err) { return logError('Getting Configuration File failed:', err) }
-  },
-
-  async checkConfigFile() {
-    const { config = '' } = this.getConfigurationFile() || {}
-
-    this.configFileExists = !__isEmpty(config)
-
-    return this
-  },
 
   async setProjectName() {
-    const { config = '' } = this.getConfigurationFile() || {}
-
-    if (!__isEmpty(config)) {
-      const { PROJECT_NAME } = config
-      this.PROJECT_NAME = PROJECT_NAME
-
-      return this
-    }
-    return logError('Setting project name failed:', 'There was a problem with a config file')
-  },
-
-  async setEmailCreds() {
-    const { config = '' } = this.getConfigurationFile() || {}
-
-    if (!__isEmpty(config)) {
-      const { EMAIL_CONFIG } = config
+    try {
       const {
-        LOGIN,
-        PASS,
-        SERVICE,
-        SENDER_LIST
-      } = EMAIL_CONFIG
+        result,
+        code,
+        ErrorMessage
+      } = await new FilesService().getProjectName()
 
-      if (!LOGIN
-      || !PASS
-      || !SERVICE
-      || !SENDER_LIST
-      ) return logError('Setting email credentials failed:', 'Check EMAIL_CONFIG')
+      if (code !== 0 && code !== 1) throw new Error(ErrorMessage)
 
-      this.EMAIL_CONFIG = EMAIL_CONFIG
+      this.PROJECT_NAME = result
 
       return this
+    } catch (err) {
+      return logError('Setting project name failed:', 'There was a problem with getting the base of directory')
     }
-    return logError('Setting email credentials failed:', 'There was a problem with a config file')
   }
 
 }, {
-  checkConfigFile: action,
-  setProjectName: action,
-  setEmailCreds: action
-})
-
-autorun(() => {
-  // logAutorun('Files Info')
-  // logStoreValues(FilesInfoStore, 'FilesInfoStore')
+  setProjectName: action
 })

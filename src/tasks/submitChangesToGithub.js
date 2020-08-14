@@ -23,7 +23,7 @@ async function stageFiles() {
 async function createCommitMsg() {
   const { commitMsg } = ShellArgumentsStore
   const { currentBranch } = await GitInfoStore.setCurrentBranch()
-  await GitInfoStore.setStatusedFiles()
+  // await GitInfoStore.setStatusedFiles()
   const { actionTime } = ProjectInfoStore
 
   const { commitMessage } = await GitInfoStore

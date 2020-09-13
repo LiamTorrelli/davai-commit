@@ -1,5 +1,6 @@
 // Stores
 import { ShellArgumentsStore } from './modules/index'
+import { GitService } from './services/gitService'
 
 // Tasks
 import { parseArgumentsIntoOptions } from './tasks/parseArgumentsIntoOptions'
@@ -38,3 +39,8 @@ export async function cli(args) {
 
   return logError('How did you get here?')
 }
+
+export const DavaiCommit = {
+  GitService
+};
+

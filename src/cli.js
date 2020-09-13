@@ -18,7 +18,7 @@ import {
 } from './handlers/outputHandler'
 
 export async function cli(args) {
-  console.log('VERSION', '2.0.0')
+  console.log('VERSION', '2.0.2')
 
   try {
     await parseArgumentsIntoOptions(args)
